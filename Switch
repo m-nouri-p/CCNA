@@ -75,7 +75,7 @@ ASw1(config-if)# switchport mode trunk
 
 ASw1# show vlan brief
 ASw1# show vlan id 2
-ASw1# show interface trunk
+ASw1# show interfaces trunk
 ASw1# show cdp neighbors
 ASw1# switchport nonegotiate
 
