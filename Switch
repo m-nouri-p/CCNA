@@ -28,6 +28,18 @@ ASw1(config-line)# transport input all
 
 -------------------------------------------------
 
+ASw1(config)# interface vlan 1
+ASw1(config-if)# ip address 192.168.1.2 255.255.255.0
+ASw1(config-if)# no shutdown
+ASw1(config-if)# exit
+ASw1(config)# ip default-gateway 192.168.1.1
+
+ASw1(config)# ip domain name example.com
+ASw1(config)# crypto key generate rsa
+ASw1(config)# ip ssh version 2
+
+-------------------------------------------------
+
 ASw1(config)# username mohammad secret nouri
 
 ASw1(config)# line console 0
@@ -38,18 +50,6 @@ ASw1(config)# line vty 0 15
 ASw1(config-line)# login local 
 ASw1(config-line)# no password 
 ASw1(config-line)# transport input all
-
--------------------------------------------------
-
-ASw1(config)# interface vlan 1
-ASw1(config-if)# ip address 192.168.1.2 255.255.255.0
-ASw1(config-if)# no shutdown
-ASw1(config-if)# exit
-ASw1(config)# ip default-gateway 192.168.1.1
-
-ASw1(config)# ip domain name example.com
-ASw1(config)# crypto key generate rsa
-ASw1(config)# ip ssh version 2
 
 -------------------------------------------------
 
@@ -81,9 +81,11 @@ ASw1# switchport nonegotiate
 
 -------------------------------------------------
 
-
-
--------------------------------------------------
 ASw1# copy running-config startup-config
 ASw1# write
 ASw1# copy running-config tftp:
+
+-------------------------------------------------
+
+ASw1(config)#line console 0
+ASw1(config-line)#exec-timeout 0 0
