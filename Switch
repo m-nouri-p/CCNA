@@ -87,5 +87,21 @@ ASw1# copy running-config tftp:
 
 -------------------------------------------------
 
-ASw1(config)#line console 0
-ASw1(config-line)#exec-timeout 0 0
+ASw1(config)# line console 0
+ASw1(config-line)# exec-timeout 0 0
+
+-------------------------------------------------
+
+ASw1# show vtp status
+ASw1# vtp domain Dena
+ASw1# vtp mode server
+ASw1# vtp password mohammad
+
+-------------------------------------------------
+
+ASw1# switchport port-security
+ASw1# switchport port-security mac-address sticky
+ASw1# switchport port-security aging ...
+ASw1# switchport port-security maximum 2
+ASw1# switchport port-security violation shutdown
+ASw1# show port-security int f0/1
