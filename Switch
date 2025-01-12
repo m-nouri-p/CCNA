@@ -1,36 +1,34 @@
 Switch> enable
 Switch# configure terminal
 Switch(config)# hostname ASw1  
+
 ASw1(config)# ! A comment is any line beginning with an exclamation mark.
 ASw1(config)# ! ASw ==> Access Switch | DSw ==> Distribution Switch | CSw ==> Core Switch
 
-Switch(config)# enable secret love
-
-ASw1(config)# line console 0
-ASw1(config-line)# password faith
-ASw1(config-line)# login
-ASw1(config-line)# exit
-
-ASw1(config)# line vty 0 15
-ASw1(config-line)# password hope
-ASw1(config-line)# login
-ASw1(config-line)# transport input all 
-ASw1(config-line)# exit
-
-ASw1(config)# interface vlan 1
-ASw1(config-if)# ip address 192.168.1.2 255.255.255.0
-ASw1(config-if)# no shutdown
-ASw1(config-if)# exit
-ASw1(config)# ip default-gateway 192.168.1.1
+ASw1# show clock 
+ASw1# clock set 8:26:00 12 jan 2025
+ASw1# configure terminal
+ASw1(config)# clock timezone Tehran 3 30
 
 ASw1# show ip interface brief
 ASw1# show interfaces status
 
--------------------------------------
+-------------------------------------------------
 
+Switch(config)# enable secret somepassword1
 
-ASw1(config)# username wendell secret odom
-ASw1(config)# username chris secret youdda
+ASw1(config)# line console 0
+ASw1(config-line)# password somepassword2
+ASw1(config-line)# login
+
+ASw1(config)# line vty 0 15
+ASw1(config-line)# password somepassword3
+ASw1(config-line)# login
+ASw1(config-line)# transport input all 
+
+-------------------------------------------------
+
+ASw1(config)# username mohammad secret nouri
 
 ASw1(config)# line console 0
 ASw1(config-line)# login local
@@ -41,13 +39,19 @@ ASw1(config-line)# login local
 ASw1(config-line)# no password 
 ASw1(config-line)# transport input all
 
+-------------------------------------------------
+
+ASw1(config)# interface vlan 1
+ASw1(config-if)# ip address 192.168.1.2 255.255.255.0
+ASw1(config-if)# no shutdown
+ASw1(config-if)# exit
+ASw1(config)# ip default-gateway 192.168.1.1
+
 ASw1(config)# ip domain name example.com
 ASw1(config)# crypto key generate rsa
 ASw1(config)# ip ssh version 2
 
---------------------------------------
-
-ASw1# show vlan brief
+-------------------------------------------------
 
 ASw1(config)# vlan 2
 ASw1(config-vlan)# name Freds-vlan
@@ -58,8 +62,6 @@ ASw1(config-if-range)# switchport access vlan 2
 ASw1(config-if-range)# switchport mode access 
 ASw1(config-if-range)# end
 
-ASw1# show vlan id 2
-
 ASw1(config)# interface range FastEthernet 4/1, FastEthernet 5/1
 ASw1(config-if-range)# switchport access vlan 3
 ASw1(config-if-range)# ^Z
@@ -67,8 +69,21 @@ ASw1(config-if-range)# ^Z
 ASw1# show interfaces gigabitEthernet 9/1 switchport
 ASw1# show interfaces trunk 
 
-Switch(config)# interface FastEthernet 0/1
-Switch(config-if)# switchport mode dynamic desirable 
+ASw1(config)# interface FastEthernet 0/2
+ASw1(config-if)# switchport trunk encapsulation dot1Q
+ASw1(config-if)# switchport mode trunk 
+
+ASw1# show vlan brief
+ASw1# show vlan id 2
+ASw1# show interface trunk
+ASw1# show cdp neighbors
+ASw1# switchport nonegotiate
+
+-------------------------------------------------
 
 
 
+-------------------------------------------------
+ASw1# copy running-config startup-config
+ASw1# write
+ASw1# copy running-config tftp:
