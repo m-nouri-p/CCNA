@@ -1,69 +1,74 @@
-Switch(config)#enable secret love
+Switch> enable
+Switch# configure terminal
+Switch(config)# hostname ASw1  
+ASw1(config)# ! A comment is any line beginning with an exclamation mark.
+ASw1(config)# ! ASw ==> Access Switch | DSw ==> Distribution Switch | CSw ==> Core Switch
 
-Switch(config)#line console 0
-Switch(config-line)#password faith
-Switch(config-line)#login
-Switch(config-line)#exit
+Switch(config)# enable secret love
 
-Switch(config)#line vty 0 15
-Switch(config-line)#password hope
-Switch(config-line)#login
-Switch(config-line)#transport input all 
-Switch(config-line)#exit
+ASw1(config)# line console 0
+ASw1(config-line)# password faith
+ASw1(config-line)# login
+ASw1(config-line)# exit
 
-Switch(config)#interface vlan 1
-Switch(config-if)#ip address 192.168.1.2 255.255.255.0
-Switch(config-if)#no shutdown
-Switch(config-if)#exit
-Switch(config)#ip default-gateway 192.168.1.1
+ASw1(config)# line vty 0 15
+ASw1(config-line)# password hope
+ASw1(config-line)# login
+ASw1(config-line)# transport input all 
+ASw1(config-line)# exit
 
-Switch#show ip interface brief
-Switch#show interfaces status
+ASw1(config)# interface vlan 1
+ASw1(config-if)# ip address 192.168.1.2 255.255.255.0
+ASw1(config-if)# no shutdown
+ASw1(config-if)# exit
+ASw1(config)# ip default-gateway 192.168.1.1
+
+ASw1# show ip interface brief
+ASw1# show interfaces status
 
 -------------------------------------
 
 
-Switch(config)#username wendell secret odom
-Switch(config)#username chris secret youdda
+ASw1(config)# username wendell secret odom
+ASw1(config)# username chris secret youdda
 
-Switch(config)#line console 0
-Switch(config-line)#login local
-Switch(config-line)#no password 
+ASw1(config)# line console 0
+ASw1(config-line)# login local
+ASw1(config-line)# no password 
 
-Switch(config)#line vty 0 15
-Switch(config-line)#login local 
-Switch(config-line)#no password 
-Switch(config-line)#transport input all
+ASw1(config)# line vty 0 15
+ASw1(config-line)# login local 
+ASw1(config-line)# no password 
+ASw1(config-line)# transport input all
 
-Switch(config)#hostname SW1
-SW1(config)#ip domain name example.com
-SW1(config)#crypto key generate rsa
-SW1(config)#ip ssh version 2
+ASw1(config)# ip domain name example.com
+ASw1(config)# crypto key generate rsa
+ASw1(config)# ip ssh version 2
 
 --------------------------------------
 
-SW1#show vlan brief
+ASw1# show vlan brief
 
-SW1(config)#vlan 2
-SW1(config-vlan)#name Freds-vlan
-SW1(config-vlan)#exit
+ASw1(config)# vlan 2
+ASw1(config-vlan)# name Freds-vlan
+ASw1(config-vlan)# exit
 
-Switch(config)#interface range FastEthernet 0/1 , FastEthernet 1/1 , FastEthernet 2/1
-Switch(config-if-range)#switchport access vlan 2
-Switch(config-if-range)#switchport mode access 
-Switch(config-if-range)#end
+ASw1(config)# interface range FastEthernet 0/1 , FastEthernet 1/1 , FastEthernet 2/1
+ASw1(config-if-range)# switchport access vlan 2
+ASw1(config-if-range)# switchport mode access 
+ASw1(config-if-range)# end
 
-Switch#show vlan id 2
+ASw1# show vlan id 2
 
-Switch(config)#interface range FastEthernet 4/1, FastEthernet 5/1
-Switch(config-if-range)#switchport access vlan 3
-Switch(config-if-range)#^Z
+ASw1(config)# interface range FastEthernet 4/1, FastEthernet 5/1
+ASw1(config-if-range)# switchport access vlan 3
+ASw1(config-if-range)# ^Z
 
-Switch#show interfaces gigabitEthernet 9/1 switchport
-Switch#show interfaces trunk 
+ASw1# show interfaces gigabitEthernet 9/1 switchport
+ASw1# show interfaces trunk 
 
-Switch(config)#interface FastEthernet 0/1
-Switch(config-if)#switchport mode dynamic desirable 
+Switch(config)# interface FastEthernet 0/1
+Switch(config-if)# switchport mode dynamic desirable 
 
 
 
