@@ -72,7 +72,7 @@ ASw1# show interfaces trunk
 ASw1(config)# interface FastEthernet 0/2
 ASw1(config-if)# switchport trunk encapsulation dot1Q
 ASw1(config-if)# switchport mode trunk 
-ASw1(config-if)# switchport trunk allowed vlan 10,20,30
+ASw1(config-if)# switchport trunk allowed vlan ?
 ASw1(config-if)# switchport trunk native vlan 1001
 
 ASw1# show vlan brief
