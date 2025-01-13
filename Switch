@@ -54,7 +54,7 @@ ASW1(config-line)# transport input all
 -------------------------------------------------
 
 ASW1(config)# vlan 2
-ASW1(config-vlan)# name Freds-vlan
+ASW1(config-vlan)# name IT-vlan
 ASW1(config-vlan)# exit
 
 ASW1(config)# interface range FastEthernet 0/1 , FastEthernet 1/1 , FastEthernet 2/1
@@ -66,7 +66,7 @@ ASW1(config)# interface range FastEthernet 4/1, FastEthernet 5/1
 ASW1(config-if-range)# switchport access vlan 3
 ASW1(config-if-range)# ^Z
 
-ASW1# show interfaces gigabitEthernet 9/1 switchport
+ASW1# show interfaces GigabitEthernet 9/1 switchport
 ASW1# show interfaces trunk 
 
 ASW1(config)# interface FastEthernet 0/2
