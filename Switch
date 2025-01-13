@@ -107,3 +107,19 @@ ASw1# switchport port-security aging ...
 ASw1# switchport port-security maximum 2
 ASw1# switchport port-security violation shutdown
 ASw1# show port-security int f0/1
+
+-------------------------------------------------
+! layer 3 switch
+
+R-Sw(config)# ip routing
+R-Sw(config)# interface g0/1
+R-Sw(config-if)# no switchport
+R-Sw(config-if)# ip address 192.168.1.193 255.255.255.252
+
+
+
+
+
+
+
+
