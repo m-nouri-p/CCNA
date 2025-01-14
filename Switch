@@ -26,7 +26,7 @@ ASW1(config-line)# transport input ?
 ASW1(config-line)# transport output none
 
 -------------------------------------------------
-! disable shared password and login with user/pass
+! disable shared password and login via user/pass
 
 DSW1(config)# vlan 50
 DSW1(config-vlan)# name MGMT     ! management
@@ -115,17 +115,81 @@ R-SW(config-if)# no switchport
 R-SW(config-if)# ip address 192.168.1.193 255.255.255.252
 
 -------------------------------------------------
+! banner
+
+ASW1(config)# banner login ^
+ASW1(config)# banner exec $
+ASW1(config)# banner motd %
+
+-------------------------------------------------
+! erace all configs
+
+ASW1# write erase
+ASW1# erase startup-config
+ASW1# erase nvram:
+
+-------------------------------------------------
 ! show commands
+
+ASW1> show mac address-table aging-time
+ASW1> show mac address-table count
+ASW1> show mac address-table dynamic
+ASW1> show mac address-table dynamic address 0DF7.45BA.201C
+ASW1> show mac address-table dynamic interface FastEthernet 0/1
+ASW1> show mac address-table dynamic vlan 1
 
 ASW1# show cdp neighbors
 ASW1# show clock
+ASW1# show crypto key mypubkey rsa
+ASW1# show dhcp lease
+ASW1# show history
 ASW1# show interfaces
 ASW1# show interfaces status
+ASW1# show interfaces GigabitEthernet 9/1
+ASW1# show interfaces GigabitEthernet 9/1 counters
+ASW1# show interfaces GigabitEthernet 9/1 status
 ASW1# show interfaces GigabitEthernet 9/1 switchport
+ASW1# show interfaces vlan 30
 ASW1# show interfaces trunk 
+ASW1# show ip default-gateway
 ASW1# show ip interface brief
+ASW1# show ip ssh
+ASW1# show logging
+ASW1# show running-config
+ASW1# show running-config interface GigabitEthernet 1/0/1
+ASW1# show running-config | begin line vty
+ASW1# show ssh
+ASW1# show startup-config
 ASW1# show vlan brief
 ASW1# show vlan id 2
+
+-------------------------------------------------
+! other commands
+
+ASW1# clear mac address-table dynamic vlan 3
+ASW1# clear mac address-table dynamic interface f0/1 
+ASW1# clear mac address-table address 0DF7.45BA.201C
+ASW1# debug all
+ASW1# disable
+ASW1# no debug all
+ASW1# reload
+ASW1# terminal history size x
+ASW1# undebug all
+
+ASW1(config)# history size x
+ASW1(config)# [no] ip domain-lookup
+ASW1(config)# ip name-server x1,x2
+ASW1(config)# [no] logging console
+ASW1(config)# service password-encryption
+
+ASW1(config-if)# ip address dhcp
+ASW1(config-if)# duplex ?
+ASW1(config-if)# [no] mdix-auto
+ASW1(config-if)# speed ?
+
+
+
+
 
 
 
