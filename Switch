@@ -1,18 +1,18 @@
-Switch> enable
+Switch> ! A comment is any line beginning with an exclamation mark.
+Switch> ! ASW ==> Access Switch | DSW ==> Distribution Switch | CSW ==> Core Switch
+
+Switch> enable 
+Switch# clock set 8:26:00 12 jan 2025
 Switch# configure terminal
-Switch(config)# hostname ASw1  
-
-ASW1(config)# ! A comment is any line beginning with an exclamation mark.
-ASW1(config)# ! ASW ==> Access Switch | DSW ==> Distribution Switch | CSW ==> Core Switch
-
-ASW1# show clock 
-ASW1# clock set 8:26:00 12 jan 2025
-ASW1# configure terminal
+Switch(config)# hostname ASw1 
 ASW1(config)# clock timezone Tehran 3 30
-
+ 
 -------------------------------------------------
 
 ASW1(config)# enable secret somepassword1
+
+-------------------------------------------------
+! enable shared password
 
 ASW1(config)# line console 0
 ASW1(config-line)# password somepassword2
@@ -22,11 +22,13 @@ ASW1(config)# line vty 0 15
 ASW1(config-line)# password somepassword3
 ASW1(config-line)# login
 ASW1(config-line)# transport input ?
+ASW1(config-line)# transport output none
 
 -------------------------------------------------
+! disable shared password and login with user/pass
 
 DSW1(config)# vlan 50
-DSW1(config-vlan)# name MGMT           ! management
+DSW1(config-vlan)# name MGMT     ! management
 
 DSW1(config)# interface vlan 50
 DSW1(config-if)# ip address 192.168.1.2 255.255.255.0
@@ -37,8 +39,6 @@ DSW1(config)# ip default-gateway 192.168.1.1
 DSW1(config)# ip domain name example.com
 DSW1(config)# crypto key generate rsa
 DSW1(config)# ip ssh version 2
-
--------------------------------------------------
 
 ASW1(config)# username mohammad secret nouri
 ASW1(config)# username help privilege 5 secret desk
@@ -51,6 +51,9 @@ ASW1(config)# line vty 0 15
 ASW1(config-line)# login local 
 ASW1(config-line)# no password 
 ASW1(config-line)# transport input ?
+ASW1(config-line)# transport output none
+ASW1(config-line)# exec-timeout 0 0
+ASW1(config-line)# logging synchronous
 
 -------------------------------------------------
 
@@ -73,24 +76,17 @@ ASW1(config-if)# switchport mode trunk
 ASW1(config-if)# switchport trunk allowed vlan ?
 ASW1(config-if)# switchport trunk native vlan 1001
 
-ASW1# show vlan brief
-ASW1# show vlan id 2
-ASW1# show interfaces trunk
-ASW1# show cdp neighbors
 ASW1# switchport nonegotiate
 
 -------------------------------------------------
+! copy
 
 ASW1# copy running-config startup-config
 ASW1# write
 ASW1# copy running-config tftp:
 
 -------------------------------------------------
-
-ASW1(config)# line console 0
-ASW1(config-line)# exec-timeout 0 0
-
--------------------------------------------------
+! vtp 
 
 ASW1# show vtp status
 ASW1# vtp domain Dena
@@ -98,6 +94,7 @@ ASW1# vtp mode server
 ASW1# vtp password mohammad
 
 -------------------------------------------------
+! port-security
 
 ASW1# switchport port-security
 ASW1# switchport port-security mac-address sticky
@@ -115,17 +112,18 @@ R-SW(config-if)# no switchport
 R-SW(config-if)# ip address 192.168.1.193 255.255.255.252
 
 -------------------------------------------------
-
-ASW5(config)#line console 0
-ASW5(config-line)#logging synchronous
-
--------------------------------------------------
 ! show commands:
 
-ASW1# show ip interface brief
+ASW1# show cdp neighbors
+ASW1# show clock
+ASW1# show interfaces
 ASW1# show interfaces status
 ASW1# show interfaces GigabitEthernet 9/1 switchport
 ASW1# show interfaces trunk 
+ASW1# show ip interface brief
+ASW1# show vlan brief
+ASW1# show vlan id 2
+
 
 
 
