@@ -1,3 +1,4 @@
+
 Switch> ! A comment is any line beginning with an exclamation mark.
 Switch> ! ASW ==> Access Switch | DSW ==> Distribution Switch | CSW ==> Core Switch
 
@@ -56,6 +57,7 @@ ASW1(config-line)# exec-timeout 0 0
 ASW1(config-line)# logging synchronous
 
 -------------------------------------------------
+! vlan
 
 ASW1(config)# vlan 2
 ASW1(config-vlan)# name IT-vlan
@@ -84,6 +86,7 @@ ASW1# switchport nonegotiate
 ASW1# copy running-config startup-config
 ASW1# write
 ASW1# copy running-config tftp:
+ASW1# copy ?
 
 -------------------------------------------------
 ! vtp 
@@ -107,12 +110,12 @@ ASW1# show port-security int f0/1
 ! layer 3 switch
 
 R-SW(config)# ip routing
-R-SW(config)# interface g0/1
+R-SW(config)# interface G0/1
 R-SW(config-if)# no switchport
 R-SW(config-if)# ip address 192.168.1.193 255.255.255.252
 
 -------------------------------------------------
-! show commands:
+! show commands
 
 ASW1# show cdp neighbors
 ASW1# show clock
