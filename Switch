@@ -86,6 +86,7 @@ ASW1# switchport nonegotiate
 
 ASW1# copy running-config startup-config
 ASW1# write
+ASW1# write memory
 ASW1# copy running-config tftp:
 ASW1# copy ?
 
