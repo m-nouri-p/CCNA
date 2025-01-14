@@ -10,9 +10,6 @@ ASW1# clock set 8:26:00 12 jan 2025
 ASW1# configure terminal
 ASW1(config)# clock timezone Tehran 3 30
 
-ASW1# show ip interface brief
-ASW1# show interfaces status
-
 -------------------------------------------------
 
 ASW1(config)# enable secret somepassword1
@@ -24,23 +21,27 @@ ASW1(config-line)# login
 ASW1(config)# line vty 0 15
 ASW1(config-line)# password somepassword3
 ASW1(config-line)# login
-ASW1(config-line)# transport input all 
+ASW1(config-line)# transport input ?
 
 -------------------------------------------------
 
-ASW1(config)# interface vlan 1
-ASW1(config-if)# ip address 192.168.1.2 255.255.255.0
-ASW1(config-if)# no shutdown
-ASW1(config-if)# exit
-ASW1(config)# ip default-gateway 192.168.1.1
+DSW1(config)# vlan 50
+DSW1(config-vlan)# name MGMT           ! management
 
-ASW1(config)# ip domain name example.com
-ASW1(config)# crypto key generate rsa
-ASW1(config)# ip ssh version 2
+DSW1(config)# interface vlan 50
+DSW1(config-if)# ip address 192.168.1.2 255.255.255.0
+DSW1(config-if)# no shutdown
+DSW1(config-if)# exit
+DSW1(config)# ip default-gateway 192.168.1.1
+
+DSW1(config)# ip domain name example.com
+DSW1(config)# crypto key generate rsa
+DSW1(config)# ip ssh version 2
 
 -------------------------------------------------
 
 ASW1(config)# username mohammad secret nouri
+ASW1(config)# username help privilege 5 secret desk
 
 ASW1(config)# line console 0
 ASW1(config-line)# login local
@@ -49,7 +50,7 @@ ASW1(config-line)# no password
 ASW1(config)# line vty 0 15
 ASW1(config-line)# login local 
 ASW1(config-line)# no password 
-ASW1(config-line)# transport input all
+ASW1(config-line)# transport input ?
 
 -------------------------------------------------
 
@@ -65,9 +66,6 @@ ASW1(config-if-range)# end
 ASW1(config)# interface range FastEthernet 4/1, FastEthernet 5/1
 ASW1(config-if-range)# switchport access vlan 3
 ASW1(config-if-range)# ^Z
-
-ASW1# show interfaces GigabitEthernet 9/1 switchport
-ASW1# show interfaces trunk 
 
 ASW1(config)# interface FastEthernet 0/2
 ASW1(config-if)# switchport trunk encapsulation dot1Q
@@ -115,6 +113,19 @@ R-SW(config)# ip routing
 R-SW(config)# interface g0/1
 R-SW(config-if)# no switchport
 R-SW(config-if)# ip address 192.168.1.193 255.255.255.252
+
+-------------------------------------------------
+
+ASW5(config)#line console 0
+ASW5(config-line)#logging synchronous
+
+-------------------------------------------------
+! show commands:
+
+ASW1# show ip interface brief
+ASW1# show interfaces status
+ASW1# show interfaces GigabitEthernet 9/1 switchport
+ASW1# show interfaces trunk 
 
 
 
