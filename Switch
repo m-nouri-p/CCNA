@@ -64,8 +64,9 @@ ASW1(config-vlan)# name IT-vlan
 ASW1(config-vlan)# exit
 
 ASW1(config)# interface range FastEthernet 0/1 , FastEthernet 1/1 , FastEthernet 2/1
-ASW1(config-if-range)# switchport access vlan 2
-ASW1(config-if-range)# switchport mode access 
+ASW1(config-if-range)# switchport mode access
+ASW1(config-if-range)# switchport access vlan 2 
+ASW1(config-if-range)# switchport vioce vlan 3
 ASW1(config-if-range)# end
 
 ASW1(config)# interface range FastEthernet 4/1, FastEthernet 5/1
@@ -91,9 +92,8 @@ ASW1# copy ?
 -------------------------------------------------
 ! vtp 
 
-ASW1# show vtp status
 ASW1# vtp domain Dena
-ASW1# vtp mode server
+ASW1# vtp mode {server|client|transport|off}
 ASW1# vtp password mohammad
 
 -------------------------------------------------
@@ -104,7 +104,6 @@ ASW1# switchport port-security mac-address sticky
 ASW1# switchport port-security aging ...
 ASW1# switchport port-security maximum 2
 ASW1# switchport port-security violation shutdown
-ASW1# show port-security int f0/1
 
 -------------------------------------------------
 ! layer 3 switch
@@ -144,24 +143,31 @@ ASW1# show crypto key mypubkey rsa
 ASW1# show dhcp lease
 ASW1# show history
 ASW1# show interfaces
+ASW1# show interfaces description
+ASW1# show interfaces g 9/1
+ASW1# show interfaces g 9/1 counters
+ASW1# show interfaces g 9/1 status
+ASW1# show interfaces g 9/1 switchport
+ASW1# show interfaces g 9/1 trunk
 ASW1# show interfaces status
-ASW1# show interfaces GigabitEthernet 9/1
-ASW1# show interfaces GigabitEthernet 9/1 counters
-ASW1# show interfaces GigabitEthernet 9/1 status
-ASW1# show interfaces GigabitEthernet 9/1 switchport
 ASW1# show interfaces vlan 30
 ASW1# show interfaces trunk 
 ASW1# show ip default-gateway
 ASW1# show ip interface brief
 ASW1# show ip ssh
 ASW1# show logging
+ASW1# show port-security int f0/1
 ASW1# show running-config
-ASW1# show running-config interface GigabitEthernet 1/0/1
+ASW1# show running-config all
+ASW1# show running-config interface G1/0/1
 ASW1# show running-config | begin line vty
 ASW1# show ssh
 ASW1# show startup-config
+ASW1# show vlan
 ASW1# show vlan brief
 ASW1# show vlan id 2
+ASW1# show vlan name x
+ASW1# show vtp status
 
 -------------------------------------------------
 ! other commands
@@ -181,11 +187,14 @@ ASW1(config)# [no] ip domain-lookup
 ASW1(config)# ip name-server x1,x2
 ASW1(config)# [no] logging console
 ASW1(config)# service password-encryption
+ASW1(config)# [no] shutdown vlan 10
 
+ASW1(config-if)# default interface g0/2
+ASW1(config-if)# [no] description x
+ASW1(config-if)# [no] duplex ?
 ASW1(config-if)# ip address dhcp
-ASW1(config-if)# duplex ?
 ASW1(config-if)# [no] mdix-auto
-ASW1(config-if)# speed ?
+ASW1(config-if)# [no] speed ?
 
 
 
