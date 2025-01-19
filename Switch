@@ -162,6 +162,7 @@ ASW1# show running-config
 ASW1# show running-config all
 ASW1# show running-config interface G1/0/1
 ASW1# show running-config | begin line vty
+ASW1# show running-config | include ?
 ASW1# show ssh
 ASW1# show startup-config
 ASW1# show vlan
