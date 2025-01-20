@@ -197,6 +197,7 @@ ASW1(config-if)# [no] duplex ?
 ASW1(config-if)# ip address dhcp
 ASW1(config-if)# [no] mdix-auto
 ASW1(config-if)# [no] speed ?
+ASW1(config-if)# no switchport
 
 
 
