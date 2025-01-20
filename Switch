@@ -142,7 +142,6 @@ ASW1(config)# spanning-tree vlan 10 prority 28000
 ASW1(config-if)# spanning-tree cost 10
 ASW1(config-if)# spanning-tree port-prority 64
 
-
 -------------------------------------------------
 ! show commands
 
