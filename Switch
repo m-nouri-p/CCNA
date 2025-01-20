@@ -178,6 +178,7 @@ ASW1# show running-config interface G1/0/1
 ASW1# show running-config | begin line vty
 ASW1# show running-config | include ?
 ASW1# show spanning-tree
+ASW1# show spanning-tree root
 ASW1# show spanning-tree vlan 30
 ASW1# show ssh
 ASW1# show startup-config
