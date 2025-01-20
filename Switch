@@ -129,6 +129,21 @@ ASW1# erase startup-config
 ASW1# erase nvram:
 
 -------------------------------------------------
+! STP
+
+ASW1(config)# spanning-tree mode rapid-pvst
+ASW1(config)# spanning-tree vlan 10 forward-time 8
+ASW1(config)# spanning-tree vlan 10 hello-time 4
+ASW1(config)# spanning-tree vlan 10 max-age 10
+ASW1(config)# spanning-tree vlan 10 root primary
+ASW1(config)# spanning-tree vlan 10 root secondary
+ASW1(config)# spanning-tree vlan 10 prority 28000
+
+ASW1(config-if)# spanning-tree cost 10
+ASW1(config-if)# spanning-tree port-prority 64
+
+
+-------------------------------------------------
 ! show commands
 
 ASW1> show mac address-table aging-time
@@ -163,6 +178,8 @@ ASW1# show running-config all
 ASW1# show running-config interface G1/0/1
 ASW1# show running-config | begin line vty
 ASW1# show running-config | include ?
+ASW1# show spanning-tree
+ASW1# show spanning-tree vlan 30
 ASW1# show ssh
 ASW1# show startup-config
 ASW1# show vlan
