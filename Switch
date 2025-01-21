@@ -131,7 +131,13 @@ ASW1# erase nvram:
 -------------------------------------------------
 ! STP
 
+ASW1(config)# errdisable recovery cause bpdugaurd
+ASW1(config)# errdisable recovery interval 100
+ASW1(config)# spanning-tree mode pvst
 ASW1(config)# spanning-tree mode rapid-pvst
+ASW1(config)# spanning-tree portfast [edge] default
+ASW1(config)# spanning-tree portfast [edge] bpdufilter default
+ASW1(config)# spanning-tree portfast [edge] bpdugaurd default
 ASW1(config)# spanning-tree vlan 10 forward-time 8
 ASW1(config)# spanning-tree vlan 10 hello-time 4
 ASW1(config)# spanning-tree vlan 10 max-age 10
@@ -139,8 +145,15 @@ ASW1(config)# spanning-tree vlan 10 root primary
 ASW1(config)# spanning-tree vlan 10 root secondary
 ASW1(config)# spanning-tree vlan 10 prority 28000
 
+ASW1(config-if)# spanning-tree bpdufilter disable
+ASW1(config-if)# spanning-tree bpdufilter enable
+ASW1(config-if)# spanning-tree bpdugaurd disable
+ASW1(config-if)# spanning-tree bpdugaurd enable
 ASW1(config-if)# spanning-tree cost 10
 ASW1(config-if)# spanning-tree port-prority 64
+ASW1(config-if)# spanning-tree portfast [edge]
+ASW1(config-if)# spanning-tree portfast disable
+ASW1(config-if)# spanning-tree portfast [edge] trunk
 
 -------------------------------------------------
 ! show commands
@@ -156,6 +169,7 @@ ASW1# show cdp neighbors
 ASW1# show clock
 ASW1# show crypto key mypubkey rsa
 ASW1# show dhcp lease
+ASW1# show errdisable recovery
 ASW1# show history
 ASW1# show interfaces
 ASW1# show interfaces description
@@ -178,8 +192,12 @@ ASW1# show running-config interface G1/0/1
 ASW1# show running-config | begin line vty
 ASW1# show running-config | include ?
 ASW1# show spanning-tree
+ASW1# show spanning-tree detail
+ASW1# show spanning-tree interface g0/0/0 detail
 ASW1# show spanning-tree root
+ASW1# show spanning-tree summary
 ASW1# show spanning-tree vlan 30
+ASW1# show spanning-tree vlan 30 detail
 ASW1# show ssh
 ASW1# show startup-config
 ASW1# show vlan
