@@ -74,7 +74,7 @@ ASW1(config-if-range)# switchport access vlan 3
 ASW1(config-if-range)# ^Z
 
 ASW1(config)# interface FastEthernet 0/2
-ASW1(config-if)# switchport trunk encapsulation dot1Q
+ASW1(config-if)# switchport trunk encapsulation dot1q
 ASW1(config-if)# switchport mode trunk 
 ASW1(config-if)# switchport trunk allowed vlan ?
 ASW1(config-if)# switchport trunk native vlan 1001
@@ -154,10 +154,33 @@ ASW1(config-if)# spanning-tree cost 10
 ASW1(config-if)# spanning-tree gaurd loop
 ASW1(config-if)# spanning-tree gaurd none
 ASW1(config-if)# spanning-tree gaurd root
-ASW1(config-if)# spanning-tree port-prority 64
+ASW1(config-if)# spanning-tree link-type point-to-point
+ASW1(config-if)# spanning-tree link-type shared
+ASW1(config-if)# spanning-tree port-priority 64
 ASW1(config-if)# spanning-tree portfast [edge]
 ASW1(config-if)# spanning-tree portfast disable
 ASW1(config-if)# spanning-tree portfast [edge] trunk
+ASW1(config-if)# spanning-tree vlan 30 cost 100
+ASW1(config-if)# spanning-tree vlan 30 port-priority 64
+
+-------------------------------------------------
+! etherchannel
+
+ASW1(config)# port-channel load-balance {src-dst-mac|...}
+
+ASW1(config-if-range)# channel-group 1 mode {active|passive}
+ASW1(config-if-range)# channel-group 1 mode {auto|desirable}
+ASW1(config-if-range)# channel-protocol {lacp|pagp}
+
+ASW1(config)# interface port-channel 1
+ASW1(config-if)# switchport trunk encapsulation dot1q
+ASW1(config-if)# switchport mode trunk
+
+! layer 3 etherchannel
+ASW1(config-if-range)# no switchport
+ASW1(config-if-range)# channel-group 1 mode active
+ASW1(config-if-range)# interface port-channel 1
+ASW1(config-if)# ip address 10.0.0.10 255.255.255.252
 
 -------------------------------------------------
 ! show commands
@@ -174,6 +197,9 @@ ASW1# show clock
 ASW1# show crypto key mypubkey rsa
 ASW1# show dhcp lease
 ASW1# show errdisable recovery
+ASW1# show etherchannel load-balance
+ASW1# show etherchannel port-channel
+ASW1# show etherchannel summary
 ASW1# show history
 ASW1# show interfaces
 ASW1# show interfaces description
