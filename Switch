@@ -133,6 +133,7 @@ ASW1# erase nvram:
 
 ASW1(config)# errdisable recovery cause bpdugaurd
 ASW1(config)# errdisable recovery interval 100
+ASW1(config)# spanning-tree loopgaurd default
 ASW1(config)# spanning-tree mode pvst
 ASW1(config)# spanning-tree mode rapid-pvst
 ASW1(config)# spanning-tree portfast [edge] default
@@ -150,6 +151,9 @@ ASW1(config-if)# spanning-tree bpdufilter enable
 ASW1(config-if)# spanning-tree bpdugaurd disable
 ASW1(config-if)# spanning-tree bpdugaurd enable
 ASW1(config-if)# spanning-tree cost 10
+ASW1(config-if)# spanning-tree gaurd loop
+ASW1(config-if)# spanning-tree gaurd none
+ASW1(config-if)# spanning-tree gaurd root
 ASW1(config-if)# spanning-tree port-prority 64
 ASW1(config-if)# spanning-tree portfast [edge]
 ASW1(config-if)# spanning-tree portfast disable
