@@ -5,7 +5,7 @@ Switch> ! ASW ==> Access Switch | DSW ==> Distribution Switch | CSW ==> Core Swi
 Switch> enable 
 Switch# clock set 8:26:00 12 jan 2025
 Switch# configure terminal
-Switch(config)# hostname ASw1 
+Switch(config)# hostname ASW1 
 ASW1(config)# clock timezone Tehran 3 30
  
 -------------------------------------------------
