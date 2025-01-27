@@ -139,6 +139,7 @@ ASW1(config)# spanning-tree mode rapid-pvst
 ASW1(config)# spanning-tree portfast [edge] default
 ASW1(config)# spanning-tree portfast [edge] bpdufilter default
 ASW1(config)# spanning-tree portfast [edge] bpdugaurd default
+ASW1(config)# spanning-tree vlan 10 cost 20
 ASW1(config)# spanning-tree vlan 10 forward-time 8
 ASW1(config)# spanning-tree vlan 10 hello-time 4
 ASW1(config)# spanning-tree vlan 10 max-age 10
@@ -243,6 +244,7 @@ ASW1# clear mac address-table dynamic vlan 3
 ASW1# clear mac address-table dynamic interface f0/1 
 ASW1# clear mac address-table address 0DF7.45BA.201C
 ASW1# debug all
+ASW1# debug spanning-tree events
 ASW1# disable
 ASW1# no debug all
 ASW1# reload
