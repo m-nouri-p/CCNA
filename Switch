@@ -223,6 +223,7 @@ ASW1# show running-config | begin line vty
 ASW1# show running-config | include ?
 ASW1# show spanning-tree
 ASW1# show spanning-tree detail
+ASW1# show spanning-tree interface g0/0/0
 ASW1# show spanning-tree interface g0/0/0 detail
 ASW1# show spanning-tree root
 ASW1# show spanning-tree summary
