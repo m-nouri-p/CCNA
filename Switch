@@ -197,6 +197,7 @@ ASW1# show clock
 ASW1# show crypto key mypubkey rsa
 ASW1# show dhcp lease
 ASW1# show errdisable recovery
+ASW1# show etherchannel
 ASW1# show etherchannel load-balance
 ASW1# show etherchannel port-channel
 ASW1# show etherchannel summary
@@ -208,6 +209,7 @@ ASW1# show interfaces g 9/1 counters
 ASW1# show interfaces g 9/1 status
 ASW1# show interfaces g 9/1 switchport
 ASW1# show interfaces g 9/1 trunk
+ASW1# show interfaces portchannel 1
 ASW1# show interfaces status
 ASW1# show interfaces vlan 30
 ASW1# show interfaces trunk 
