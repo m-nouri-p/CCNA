@@ -5,6 +5,7 @@ R1# show interfaces [number] controller
 R1# show ip arp
 R1# show ip interfaces brief
 R1# show ip route
+R1# show ip route static
 R1# show protocols [number]
 
 ---------------------------------------------------------
