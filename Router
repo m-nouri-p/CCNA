@@ -9,6 +9,7 @@ R1# show ip route
 R1# show ip route {static|connected|ospf} 
 R1# show ip route 172.16.2.0
 R1# show protocols [number]
+R1# show vlans
 
 ---------------------------------------------------------
 
