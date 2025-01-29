@@ -36,9 +36,9 @@ R1(config-subif)# ip address 192.168.10.1 255.255.255.0
 ---------------------------------------------------------
 
 R1(config)# ip route 0.0.0.0 0.0.0.0 213.10.0.45
-R1(config)# ip route 192.168.10.0 255.255.255.0 192.168.20.2
-R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0
-R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0 192.168.20.2
+R1(config)# ip route 192.168.10.0 255.255.255.0 192.168.20.2 [administrative number] 
+R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0 [administrative number] 
+R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0 192.168.20.2 [administrative number]
 
 ---------------------------------------------------------
 ! other
