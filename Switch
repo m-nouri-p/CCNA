@@ -201,6 +201,7 @@ ASW1# show etherchannel
 ASW1# show etherchannel load-balance
 ASW1# show etherchannel port-channel
 ASW1# show etherchannel summary
+ASW1# show etherchannel 12 summary
 ASW1# show history
 ASW1# show interfaces
 ASW1# show interfaces description
