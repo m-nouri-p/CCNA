@@ -9,8 +9,13 @@ Switch(config)# hostname ASW1
 ASW1(config)# clock timezone Tehran 3 30
  
 -------------------------------------------------
-
+! md5
 ASW1(config)# enable secret somepassword1
+ASW1(config)# enable secret 5 somepassword1
+
+! scrypt
+ASW1(config)# enable algorithm-type scrypt secret somepassword1
+ASW1(config)# enable secret 9 somepassword1 
 
 -------------------------------------------------
 ! enable shared password
@@ -42,7 +47,8 @@ DSW1(config)# crypto key generate rsa
 DSW1(config)# ip ssh version 2
 
 ASW1(config)# username mohammad secret nouri
-ASW1(config)# username help privilege 5 secret desk
+ASW1(config)# username mohammad algorithm-type scrypt secret nouri
+ASW1(config)# username mohammad privilege 5 secret nouri
 
 ASW1(config)# line console 0
 ASW1(config-line)# login local
