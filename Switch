@@ -82,7 +82,7 @@ ASW1(config-if-range)# ^Z
 ASW1(config)# interface FastEthernet 0/2
 ASW1(config-if)# switchport trunk encapsulation dot1q
 ASW1(config-if)# switchport mode trunk 
-ASW1(config-if)# switchport trunk allowed vlan ?
+ASW1(config-if)# switchport trunk allowed vlan 30,40,50
 ASW1(config-if)# switchport trunk native vlan 1001
 ASW1(config-if)# switchport nonegotiate
 
