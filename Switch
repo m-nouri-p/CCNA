@@ -98,6 +98,7 @@ ASW1# copy ?
 -------------------------------------------------
 ! vtp 
 
+ASW1# vtp version 2
 ASW1# vtp domain Dena
 ASW1# vtp mode {server|client|transport|off}
 ASW1# vtp password mohammad
