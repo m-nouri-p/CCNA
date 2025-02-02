@@ -84,7 +84,6 @@ ASW1(config-if)# switchport trunk encapsulation dot1q
 ASW1(config-if)# switchport mode trunk 
 ASW1(config-if)# switchport trunk allowed vlan ?
 ASW1(config-if)# switchport trunk native vlan 1001
-
 ASW1(config-if)# switchport nonegotiate
 
 -------------------------------------------------
