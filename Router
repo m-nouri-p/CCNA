@@ -79,6 +79,14 @@ R1(config-router)# default-information originate
 R1(config-router)# router-id A.B.C.D
 R1# clear ip ospf process !not recommended
 R1(config-router)# maximum-path 4
+R1(config-router)# auto-cost reference-bandwidth 100000
+
+R1(config-if)# ip ospf 10 area 0
+R1(config-if)# ip ospf cost 1000
+R1(config-if)# bandwidth 10000
+
+R1(config-router)# passive-interface default
+R1(config-router)# no passive-interface g3/0
 
 ---------------------------------------------------------
 ! show commands
@@ -92,6 +100,7 @@ R1# show ip eigrp topology
 R1# show ip interfaces brief
 R1# show ip ospf database
 R1# show ip ospf interface [if]
+R1# show ip ospf interface brief
 R1# show ip ospf neighbor
 R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
