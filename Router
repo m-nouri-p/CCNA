@@ -87,7 +87,7 @@ R1(config-if)# ip ospf authentication
 R1(config-if)# ip ospf cost 1000
 R1(config-if)# ip ospf dead-interval 5
 R1(config-if)# ip ospf hello-interval 5
-R1(config-if)# ip ospf network {point to point|broadcast|non-broadcast}
+R1(config-if)# ip ospf network {point-to-point|broadcast|non-broadcast}
 R1(config-if)# ip ospf priority 10
 R1(config-if)# bandwidth 10000
 
@@ -132,6 +132,7 @@ R1# show vlans
 R1(config)# clear ip arp [number]
 R1(config)# default interface g0/0
 
+R1(config-if)# ip mtu 1400
 R1(config-if)# [no] negotiation auto
 
 
