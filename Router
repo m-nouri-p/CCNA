@@ -45,7 +45,9 @@ R1(config-router)# version 2
 R1(config-router)# no auto-summary
 R1(config-router)# network 10.0.0.0
 R1(config-router)# network 172.16.0.0
+R1(config-router)# network 4.4.4.4 !loopback
 R1(config-router)# passive-interface g2/0
+R1(config-router)# passive-interface lo 0
 R1(config-router)# default-information originate
 R1(config-router)# maximum-path 4
 R1(config-router)# distance 120
@@ -53,12 +55,28 @@ R1(config-router)# distance 120
 ---------------------------------------------------------
 ! EIGRP  
 
-R1(config)# router eigrp 1
+R1(config)# router eigrp 100
 R1(config-router)# no auto-summary
 R1(config-router)# passive-interface g2/0
+R1(config-router)# passive-interface lo 0
+R1(config-router)# network 4.4.4.4 !loopback
 R1(config-router)# network 10.0.0.0
 R1(config-router)# network 172.16.0.0 0.0.0.15
 R1(config-router)# eigrp router-id A.B.C.D
+R1(config-router)# maximum-path 4
+R1(config-router)# distance 90
+
+---------------------------------------------------------
+! OSPF
+
+R1(config)# router ospf 10
+R1(config-router)# network 172.16.0.0 0.0.0.15 area 0
+R1(config-router)# passive-interface g2/0
+R1(config-router)# passive-interface lo 0
+R1(config-router)# default-information originate
+R1(config-router)# router-id A.B.C.D
+R1# clear ip ospf process !not recommended
+R1(config-router)# maximum-path 4
 
 ---------------------------------------------------------
 ! show commands
@@ -67,9 +85,11 @@ R1# show arp
 R1# show interfaces [number]
 R1# show interfaces [number] controller
 R1# show ip arp
+R1# show ip eigrp neighbors
+R1# show ip eigrp topology
 R1# show ip interfaces brief
 R1# show ip route
-R1# show ip route {static|connected|ospf} 
+R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
 R1# show protocols [number]
 R1# show vlans
