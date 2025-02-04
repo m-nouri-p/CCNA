@@ -229,7 +229,8 @@ ASW1# show running-config
 ASW1# show running-config all
 ASW1# show running-config interface G1/0/1
 ASW1# show running-config | begin line vty
-ASW1# show running-config | include ?
+ASW1# show running-config | include interface
+ASW1# show running-config | section ospf
 ASW1# show spanning-tree
 ASW1# show spanning-tree detail
 ASW1# show spanning-tree interface g0/0/0
