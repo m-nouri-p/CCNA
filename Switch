@@ -120,6 +120,11 @@ R-SW(config)# interface G0/1
 R-SW(config-if)# no switchport
 R-SW(config-if)# ip address 192.168.1.193 255.255.255.252
 
+R1(config)# ipv6 unicast-routing
+R-SW(config)# interface G0/1
+R-SW(config-if)# no switchport
+R-SW(config-if)# ipv6 address 2001:db8:0:1::1/64
+
 -------------------------------------------------
 ! banner
 
