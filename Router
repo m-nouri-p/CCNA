@@ -77,7 +77,7 @@ R1(config-router)# network 172.16.0.1 0.0.0.15 area 0
 R1(config-router)# network 4.4.4.4 0.0.0.0 area 0 !loopback
 R1(config-router)# default-information originate
 R1(config-router)# router-id A.B.C.D
-R1# clear ip ospf process !not recommended
+R1# clear ip ospf process
 R1(config-router)# maximum-path 4
 R1(config-router)# auto-cost reference-bandwidth 100000
 
