@@ -106,6 +106,15 @@ R1(config-if)# encapsulation {hdlc|ppp}
 R1(config-if)# no shut
 
 ---------------------------------------------------------
+! HSRP
+
+R1(config)# int g0/0
+R1(config-if)# standby version 2
+R1(config-if)# standby 1 ip A.B.C.D
+R1(config-if)# standby 1 priority 200
+R1(config-if)# standby 1 preempt
+
+---------------------------------------------------------
 ! show commands
 
 R1# show arp
@@ -124,6 +133,7 @@ R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
 R1# show protocols [number]
+R1# show standby
 R1# show vlans
 
 ---------------------------------------------------------
