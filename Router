@@ -144,6 +144,7 @@ R1# show ip ospf neighbor
 R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
+R1# show ipv6 neighbor
 R1# show protocols [number]
 R1# show standby
 R1# show vlans
