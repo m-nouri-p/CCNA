@@ -124,6 +124,8 @@ R1(config)# interface G0/1
 R1(config-if)# ipv6 address 2001:db8:0:1::1/64
 R1(config-if)# ipv6 address 2001:db8:0:1::/64 eui-64
 
+R1(config-if)# ipv6 enable
+
 ---------------------------------------------------------
 ! show commands
 
