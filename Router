@@ -128,6 +128,9 @@ R1(config-if)# ipv6 enable
 
 R1(config-if)# ipv6 address 2001:db8:1:1::99/128 anycast
 
+R1(config)# interface G0/1
+R1(config-if)# ipv6 address autoconfig
+
 ---------------------------------------------------------
 ! show commands
 
