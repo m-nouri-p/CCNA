@@ -117,6 +117,14 @@ R1(config-if)# standby 1 priority 200
 R1(config-if)# standby 1 preempt
 
 ---------------------------------------------------------
+! IPv6
+
+R1(config)# ipv6 unicast-routing
+R-SW(config)# interface G0/1
+R-SW(config-if)# no switchport
+R-SW(config-if)# ipv6 address 2001:db8:0:1::1/64
+
+---------------------------------------------------------
 ! show commands
 
 R1# show arp
