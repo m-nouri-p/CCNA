@@ -132,12 +132,34 @@ R1(config)# interface G0/1
 R1(config-if)# ipv6 address autoconfig
 
 ---------------------------------------------------------
+! ACL
+
+R1(config)# access-list 1 deny 1.1.1.1 0.0.0.0
+R1(config)# access-list 1 deny 1.1.1.1
+R1(config)# access-list 1 deny host 1.1.1.1
+R1(config)# access-list 1 deny 192.168.1.0 0.0.0.255
+R1(config)# access-list 1 permit any
+R1(config)# access-list 1 permit 0.0.0.0 255.255.255.255
+R1(config)# access-list 1 remark ## BLOCK BOB FROM ACCOUNTING ##
+R1(config)# int g0/9
+R1(config-if)# ip access-group 1 out
+
+R1(config)# ip access-list standard BLOCK_BOB
+R1(config-std-nacl)# 5 deny 1.1.1.1
+R1(config-std-nacl)# 10 permit any
+R1(config-std-nacl)# remark ## CONFIGURED NOV 21 2024 ##
+R1(config-std-nacl)# int g0/8
+R1(config-if)# ip access-group BLOCK_BOB in
+
+---------------------------------------------------------
 ! show commands
 
+R1# show access-lists
 R1# show arp
 R1# show controllers serial 0/2
 R1# show interfaces [number]
 R1# show interfaces [number] controller
+R1# show ip access-lists 
 R1# show ip arp
 R1# show ip eigrp neighbors
 R1# show ip eigrp topology
