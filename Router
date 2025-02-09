@@ -51,6 +51,8 @@ R1(config-router)# network 4.4.4.4 !loopback
 R1(config-router)# default-information originate
 R1(config-router)# maximum-path 4
 R1(config-router)# distance 120
+R1(config-router)# redistribute static
+R1(config-router)# redistribute static subnets
 
 ---------------------------------------------------------
 ! EIGRP  
@@ -65,6 +67,8 @@ R1(config-router)# network 4.4.4.4 0.0.0.0 !loopback
 R1(config-router)# eigrp router-id A.B.C.D
 R1(config-router)# maximum-path 4
 R1(config-router)# distance 90
+R1(config-router)# redistribute static
+R1(config-router)# redistribute static subnets
 
 ---------------------------------------------------------
 ! OSPF
