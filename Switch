@@ -4,6 +4,9 @@ Switch> ! ASW ==> Access Switch | DSW ==> Distribution Switch | CSW ==> Core Swi
 
 Switch> enable 
 Switch# clock set 8:26:00 12 jan 2025
+Switch# calender set 8:26:00 12 jan 2025
+Switch# clock update-calender
+Switch# clock read-calender
 Switch# configure terminal
 Switch(config)# hostname ASW1 
 ASW1(config)# clock timezone Tehran 3 30
@@ -218,6 +221,7 @@ ASW1> show mac address-table dynamic address 0DF7.45BA.201C
 ASW1> show mac address-table dynamic interface FastEthernet 0/1
 ASW1> show mac address-table dynamic vlan 1
 
+ASW1# show calender
 ASW1# show cdp
 ASW1# show cdp entry R2
 ASW1# show cdp inteface [if]
@@ -225,6 +229,7 @@ ASW1# show cdp neighbors
 ASW1# show cdp neighbors detail
 ASW1# show cdp traffic
 ASW1# show clock
+ASW1# show clock detail
 ASW1# show crypto key mypubkey rsa
 ASW1# show dhcp lease
 ASW1# show errdisable recovery
