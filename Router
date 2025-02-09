@@ -139,6 +139,7 @@ R1(config-if)# ipv6 address autoconfig
 
 ---------------------------------------------------------
 ! ACL
+! Standard 
 
 R1(config)# access-list 1 deny 1.1.1.1 0.0.0.0
 R1(config)# access-list 1 deny 1.1.1.1
@@ -147,8 +148,14 @@ R1(config)# access-list 1 deny 192.168.1.0 0.0.0.255
 R1(config)# access-list 1 permit any
 R1(config)# access-list 1 permit 0.0.0.0 255.255.255.255
 R1(config)# access-list 1 remark ## BLOCK BOB FROM ACCOUNTING ##
+R1(config)# ip access-list resequence 1 10 10
 R1(config)# int g0/9
 R1(config-if)# ip access-group 1 out
+R1(config)# no access-list 1
+
+R1(config)# ip access-list standard 1
+R1(config-std-nacl)# deny 1.1.1.1 0.0.0.0
+R1(config-std-nacl)# permit any
 
 R1(config)# ip access-list standard BLOCK_BOB
 R1(config-std-nacl)# [entry-number] deny 1.1.1.1 0.0.0.0
@@ -157,6 +164,13 @@ R1(config-std-nacl)# no 20
 R1(config-std-nacl)# remark ## CONFIGURED NOV 21 2024 ##
 R1(config-std-nacl)# int g0/8
 R1(config-if)# ip access-group BLOCK_BOB in
+
+! Extended 
+
+R1(config)# ip access-list extended EXAMPLE
+R1(config-std-nacl)# [entry-number] deny {ip|tcp|udp|icmp|ospf|eigrp} {A.B.C.D|any|host} {A.B.C.D|any|host}
+R1(config-std-nacl)# permit {tcp|udp} {A.B.C.D|any|host} {eq|gt|lt|neq|range} any eq 80
+R1(config-std-nacl)# permit ip any any
 
 ---------------------------------------------------------
 ! show commands
