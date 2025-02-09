@@ -189,6 +189,26 @@ ASW1(config-if-range)# interface port-channel 1
 ASW1(config-if)# ip address 10.0.0.10 255.255.255.252
 
 -------------------------------------------------
+! CDP 
+
+ASW1(config)# [no] cdp run
+ASW1(config)# cdp timer 120
+ASW1(config)# cdp holdtime 200
+ASW1(config)# [no] cdp advertise-v2
+
+ASW1(config-if)# [no] cdp enable
+
+! LLCP
+
+ASW1(config)# [no] lldp run
+ASW1(config)# lldp timer 120
+ASW1(config)# lldp holdtime 200
+ASW1(config)# lldp reinit 10
+
+ASW1(config-if)# [no] lldp transmit
+ASW1(config-if)# [no] lldp receive
+
+-------------------------------------------------
 ! show commands
 
 ASW1> show mac address-table aging-time
@@ -198,7 +218,12 @@ ASW1> show mac address-table dynamic address 0DF7.45BA.201C
 ASW1> show mac address-table dynamic interface FastEthernet 0/1
 ASW1> show mac address-table dynamic vlan 1
 
+ASW1# show cdp
+ASW1# show cdp entry R2
+ASW1# show cdp inteface [if]
 ASW1# show cdp neighbors
+ASW1# show cdp neighbors detail
+ASW1# show cdp traffic
 ASW1# show clock
 ASW1# show crypto key mypubkey rsa
 ASW1# show dhcp lease
@@ -224,6 +249,12 @@ ASW1# show ip default-gateway
 ASW1# show ip interface brief
 ASW1# show ip interface g0/0
 ASW1# show ip ssh
+ASW1# show lldp
+ASW1# show lldp entry R2
+ASW1# show lldp inteface [if]
+ASW1# show lldp neighbors
+ASW1# show lldp neighbors detail
+ASW1# show lldp traffic
 ASW1# show logging
 ASW1# show port-security int f0/1
 ASW1# show running-config
