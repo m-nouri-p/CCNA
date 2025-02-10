@@ -252,6 +252,9 @@ R1(config)# logging A.B.C.D
 R1(config)# logging host A.B.C.D
 R1(config)# logging trap debugging
 
+R1(config)# service timestamps log datetime
+R1(config)# service sequence-numbers
+
 R1(config-line)# logging synchronous
 
 ---------------------------------------------------------
