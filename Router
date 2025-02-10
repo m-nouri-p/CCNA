@@ -173,7 +173,24 @@ R1(config-std-nacl)# permit {tcp|udp} {A.B.C.D|any|host} {eq|gt|lt|neq|range} an
 R1(config-std-nacl)# permit ip any any
 
 ---------------------------------------------------------
-! show commands
+! NTP
+
+ASW1(config)# clock timezone Tehran 3 30
+
+Switch# clock set 8:26:00 12 jan 2025
+Switch# calender set 8:26:00 12 jan 2025
+Switch# clock update-calender
+Switch# clock read-calender
+
+ASW1(config)# clock summer-time {name} {start} {end} [offset]
+ASW1(config)# ntp server A.B.C.D
+ASW1(config)# ntp server A.B.C.D [prefer]
+ASW1(config)# ntp master [stratum]
+ASW1(config)# ntp source {if}
+
+
+---------------------------------------------------------
+! other show commands
 
 R1# show access-lists
 R1# show arp
