@@ -239,6 +239,22 @@ R1(config)# snmp-server enable traps snmp linkdown linkup
 R1(config)# snmp-server enable traps config
 
 ---------------------------------------------------------
+! syslog
+
+R1(config)# logging console 6
+
+R1(config)# logging monitor informational
+R1# terminal monitor
+
+R1(config)# logging bufferd 8192 6
+
+R1(config)# logging A.B.C.D
+R1(config)# logging host A.B.C.D
+R1(config)# logging trap debugging
+
+R1(config-line)# logging synchronous
+
+---------------------------------------------------------
 ! show commands
 
 R1# show access-lists
