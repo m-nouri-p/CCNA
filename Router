@@ -207,6 +207,38 @@ R1(config)# ip domain lookup
 R1(config)# ip domain name mohammad.com
 
 ---------------------------------------------------------
+! DHCP
+
+! server
+R1(config)# ip dhcp excluded-addresses 192.168.1.1 192.168.1.10
+R1(config)# ip dhcp pool FIRST_LAN
+R1(dhcp-config)# network 192.168.1.0 /24
+R1(dhcp-config)# dns-server 8.8.8.8
+R1(dhcp-config)# domain name mohammad.com
+R1(dhcp-config)# default-router 192.168.1.1
+R1(dhcp-config)# lease {0 5 30|infinite}
+
+! relay agent
+R1(config)# int g0/1
+R1(config-if)# ip helper-address A.B.C.D
+
+! client
+R1(config)# int g0/1
+R1(config-if)# ip address dhcp
+
+---------------------------------------------------------
+! SNMP
+
+R1(config)# snmp-server contact example@google.com
+R1(config)# snmp-server location mohammad's house
+R1(config)# snmp-server community {password1|public} ro
+R1(config)# snmp-server community {password2|private} rw
+R1(config)# snmp-server host 192.168.1.10 version 2c password1
+R1(config)# snmp-server host 192.168.1.10 version 2c password2
+R1(config)# snmp-server enable traps snmp linkdown linkup
+R1(config)# snmp-server enable traps config
+
+---------------------------------------------------------
 ! show commands
 
 R1# show access-lists
@@ -217,6 +249,7 @@ R1# show interfaces [number]
 R1# show interfaces [number] controller
 R1# show ip access-lists 
 R1# show ip arp
+R1# show ip dhcp binding
 R1# show ip eigrp neighbors
 R1# show ip eigrp topology
 R1# show ip interfaces brief
