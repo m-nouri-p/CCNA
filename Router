@@ -190,7 +190,7 @@ ASW1(config)# ntp source {if}
 
 
 ---------------------------------------------------------
-! other show commands
+! show commands
 
 R1# show access-lists
 R1# show arp
@@ -210,6 +210,8 @@ R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
 R1# show ipv6 neighbor
+R1# show ntp associations
+R1# show ntp status
 R1# show protocols [number]
 R1# show standby
 R1# show vlans
