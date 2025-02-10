@@ -256,8 +256,6 @@ ASW1# show lldp neighbors
 ASW1# show lldp neighbors detail
 ASW1# show lldp traffic
 ASW1# show logging
-ASW1# show ntp associations
-ASW1# show ntp status
 ASW1# show port-security int f0/1
 ASW1# show running-config
 ASW1# show running-config all
