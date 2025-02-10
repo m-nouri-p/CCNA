@@ -197,11 +197,22 @@ R1(config)# ntp server 10.0.12.1 key 1
 R1(config)# ntp peer 10.0.12.1 key 1
 
 ---------------------------------------------------------
+! DNS
+
+R1(config)# ip dns server
+R1(config)# ip host R1 192.168.1.2
+R1(config)# ip host PC1 192.168.1.3
+R1(config)# ip name-server 8.8.8.8
+R1(config)# ip domain lookup
+R1(config)# ip domain name mohammad.com
+
+---------------------------------------------------------
 ! show commands
 
 R1# show access-lists
 R1# show arp
 R1# show controllers serial 0/2
+R1# show hosts
 R1# show interfaces [number]
 R1# show interfaces [number] controller
 R1# show ip access-lists 
