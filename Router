@@ -175,19 +175,26 @@ R1(config-std-nacl)# permit ip any any
 ---------------------------------------------------------
 ! NTP
 
-ASW1(config)# clock timezone Tehran 3 30
+R1(config)# clock timezone Tehran 3 30
 
-Switch# clock set 8:26:00 12 jan 2025
-Switch# calender set 8:26:00 12 jan 2025
-Switch# clock update-calender
-Switch# clock read-calender
+R1# clock set 8:26:00 12 jan 2025
+R1# calendar set 8:26:00 12 jan 2025
+R1# clock update-calendar
+R1# clock read-calendar
 
-ASW1(config)# clock summer-time {name} {start} {end} [offset]
-ASW1(config)# ntp server A.B.C.D
-ASW1(config)# ntp server A.B.C.D [prefer]
-ASW1(config)# ntp master [stratum]
-ASW1(config)# ntp source {if}
+R1(config)# clock summer-time {name} {start} {end} [offset]
+R1(config)# ntp server A.B.C.D
+R1(config)# ntp server A.B.C.D [prefer]
+R1(config)# ntp peer A.B.C.D
+R1(config)# ntp update-calendar
+R1(config)# ntp master [stratum]
+R1(config)# ntp source {if}
 
+R1(config)# ntp authenticate
+R1(config)# ntp authenticate-key 1 md5 mohammad
+R1(config)# ntp trusted-key 1
+R1(config)# ntp server 10.0.12.1 key 1
+R1(config)# ntp peer 10.0.12.1 key 1
 
 ---------------------------------------------------------
 ! show commands
