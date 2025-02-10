@@ -2,6 +2,8 @@
 Switch> ! A comment is any line beginning with an exclamation mark.
 Switch> ! ASW ==> Access Switch | DSW ==> Distribution Switch | CSW ==> Core Switch
 
+! NTP
+
 Switch> enable 
 Switch# clock set 8:26:00 12 jan 2025
 Switch# calender set 8:26:00 12 jan 2025
@@ -10,6 +12,11 @@ Switch# clock read-calender
 Switch# configure terminal
 Switch(config)# hostname ASW1 
 ASW1(config)# clock timezone Tehran 3 30
+ASW1(config)# clock summer-time {name} {start} {end} [offset]
+ASW1(config)# ntp server A.B.C.D
+ASW1(config)# ntp server A.B.C.D [prefer]
+ASW1(config)# ntp master [stratum]
+ASW1(config)# ntp source {if}
  
 -------------------------------------------------
 ! md5
@@ -261,6 +268,8 @@ ASW1# show lldp neighbors
 ASW1# show lldp neighbors detail
 ASW1# show lldp traffic
 ASW1# show logging
+ASW1# show ntp associations
+ASW1# show ntp status
 ASW1# show port-security int f0/1
 ASW1# show running-config
 ASW1# show running-config all
