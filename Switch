@@ -275,6 +275,7 @@ ASW1# show spanning-tree vlan 30 interface g0/0/0
 ASW1# show spanning-tree vlan 30 interface g0/0/0 detail
 ASW1# show ssh
 ASW1# show startup-config
+ASW1# show version
 ASW1# show vlan
 ASW1# show vlan brief
 ASW1# show vlan id 2
