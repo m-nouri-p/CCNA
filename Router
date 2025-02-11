@@ -258,6 +258,18 @@ R1(config)# service sequence-numbers
 R1(config-line)# logging synchronous
 
 ---------------------------------------------------------
+! NAT
+
+R1(config)# int g0/1
+R1(config-if)# ip nat inside 
+R1(config-if)# int g0/2
+R1(config-if)# ip nat outside 
+R1(config-if)# exit
+R1(config)# ip nat inside source static A.B.C.D A.B.C.D
+
+R1(config)# clear ip nat translation *
+
+---------------------------------------------------------
 ! show commands
 
 R1# show access-lists
@@ -272,6 +284,8 @@ R1# show ip dhcp binding
 R1# show ip eigrp neighbors
 R1# show ip eigrp topology
 R1# show ip interfaces brief
+R1# show ip nat statistics
+R1# show ip nat translations
 R1# show ip ospf database
 R1# show ip ospf interface [if]
 R1# show ip ospf interface brief
