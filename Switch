@@ -85,7 +85,7 @@ ASW1(config-if)# switchport trunk native vlan 1001
 ASW1(config-if)# switchport nonegotiate
 
 -------------------------------------------------
-! copy
+! copy and FTP/TFTP
 
 ASW1# copy running-config startup-config
 ASW1# write
@@ -94,6 +94,11 @@ ASW1# write memory
 ASW1# copy tftp: flash:
 ASW1(config)# boot system flash:c2900...
 ASW1# delete flash:c2900... 
+
+! FTP
+
+R1(config)# ip ftp username cisco
+R1(config)# ip ftp password ccna
 
 -------------------------------------------------
 ! vtp 
