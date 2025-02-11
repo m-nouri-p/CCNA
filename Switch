@@ -58,6 +58,7 @@ ASW1(config-line)# no password
 ASW1(config-line)# transport input ?
 ASW1(config-line)# transport output none
 ASW1(config-line)# exec-timeout 0 0
+ASW1(config-line)# access-class 1 in
 
 -------------------------------------------------
 ! vlan
