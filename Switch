@@ -90,8 +90,10 @@ ASW1(config-if)# switchport nonegotiate
 ASW1# copy running-config startup-config
 ASW1# write
 ASW1# write memory
-ASW1# copy running-config tftp:
-ASW1# copy ?
+
+ASW1# copy tftp: flash:
+ASW1(config)# boot system flash:c2900...
+ASW1# delete flash:c2900... 
 
 -------------------------------------------------
 ! vtp 
@@ -234,6 +236,7 @@ ASW1# show etherchannel port-channel
 ASW1# show etherchannel summary
 ASW1# show etherchannel 12 summary
 ASW1# show file systems
+ASW1# show flash
 ASW1# show history
 ASW1# show interfaces
 ASW1# show interfaces description
