@@ -265,7 +265,16 @@ R1(config-if)# ip nat inside
 R1(config-if)# int g0/2
 R1(config-if)# ip nat outside 
 R1(config-if)# exit
+
+! static
 R1(config)# ip nat inside source static A.B.C.D A.B.C.D
+R1(config)# ip nat inside source static A.B.C.D A.B.C.D
+
+! dynamic and PAT
+R1(config)# access-list 1 permit 192.168.0.0 0.0.0.255
+R1(config)# ip nat pool POOL1 100.0.0.0 100.0.0.255 {netmask 255.255.255.0|prefix-length 24}
+R1(config)# ip nat inside source list 1 pool POOL1 [overload]
+R1(config)# ip nat inside source list 1 interface g0/0 overload
 
 R1(config)# clear ip nat translation *
 
