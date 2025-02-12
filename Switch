@@ -111,11 +111,16 @@ ASW1# vtp password mohammad
 -------------------------------------------------
 ! port-security
 
-ASW1# switchport port-security
-ASW1# switchport port-security mac-address sticky
-ASW1# switchport port-security aging ...
-ASW1# switchport port-security maximum 2
-ASW1# switchport port-security violation shutdown
+ASW1(config-if)# switchport port-security
+ASW1(config-if)# switchport port-security mac-address {sticky|a.a.a}
+ASW1(config-if)# switchport port-security violation {shutdown|restrict|protect}
+ASW1(config-if)# switchport port-security maximum 2
+ASW1(config-if)# switchport port-security aging time 30
+ASW1(config-if)# switchport port-security aging type {inactivity|absolute}
+ASW1(config-if)# switchport port-security aging static
+
+ASW1(config)# errdisable recovery cause psecure-violation
+ASW1(config)# errdisable recovery interval 180
 
 -------------------------------------------------
 ! layer 3 switch
@@ -222,6 +227,7 @@ ASW1> show mac address-table dynamic
 ASW1> show mac address-table dynamic address 0DF7.45BA.201C
 ASW1> show mac address-table dynamic interface FastEthernet 0/1
 ASW1> show mac address-table dynamic vlan 1
+ASW1> show mac address-table secure
 
 ASW1# show calender
 ASW1# show cdp
@@ -265,6 +271,7 @@ ASW1# show lldp neighbors
 ASW1# show lldp neighbors detail
 ASW1# show lldp traffic
 ASW1# show logging
+ASW1# show port-security
 ASW1# show port-security int f0/1
 ASW1# show running-config
 ASW1# show running-config all
