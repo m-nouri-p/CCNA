@@ -307,6 +307,7 @@ R1# show ntp associations
 R1# show ntp status
 R1# show protocols [number]
 R1# show standby
+R1# show standby brief
 R1# show vlans
 
 ---------------------------------------------------------
