@@ -219,6 +219,19 @@ ASW1(config-if)# [no] lldp transmit
 ASW1(config-if)# [no] lldp receive
 
 -------------------------------------------------
+! DHCP snooping
+
+ASW1(config)# ip dhcp snooping
+ASW1(config)# ip dhcp snooping vlan 1
+ASW1(config)# no ip dhcp snooping information option
+ASW1(config)# interface g 0/0
+ASW1(config-if)# ip dhcp snooping trust
+ASW1(config-if)# int range g0/1-15
+ASW1(config-if-range)# ip dhcp snooping limit rate 1
+
+ASW1(config)# errdisable recovery cause dhcp-rate-limit
+
+-------------------------------------------------
 ! show commands
 
 ASW1> show mac address-table aging-time
