@@ -135,7 +135,9 @@ R-SW(config-if)# ip address 192.168.1.193 255.255.255.252
 
 ASW1(config)# banner login ^
 ASW1(config)# banner exec $
-ASW1(config)# banner motd %
+
+! set the message of the day
+ASW1(config)# banner motd % !
 
 -------------------------------------------------
 ! erace all configs
