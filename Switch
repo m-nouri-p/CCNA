@@ -60,6 +60,10 @@ ASW1(config-line)# transport output none
 ASW1(config-line)# exec-timeout 0 0
 ASW1(config-line)# access-class 1 in
 
+ASW1# show crypto key mypubkey rsa
+ASW1# show ip ssh
+ASW1# show ssh
+
 -------------------------------------------------
 ! vlan
 
@@ -85,8 +89,11 @@ ASW1(config-if)# switchport trunk allowed vlan {remove|add|except|all|none}
 ASW1(config-if)# switchport trunk native vlan 1001
 ASW1(config-if)# switchport nonegotiate
 
+ASW1(config-if)# switchport mode dynamic {desirable|auto}
+
 ASW1# show interfaces trunk
 ASW1# show interfaces g 0/1 trunk
+ASW1# show interfaces g 9/1 switchport
 ASW1# show vlan
 ASW1# show vlan brief
 ASW1# show vlan id 2
@@ -116,6 +123,8 @@ ASW1# vtp domain Dena
 ASW1# vtp mode {server|client|transport|off}
 ASW1# vtp password mohammad
 
+ASW1# show vtp status
+
 -------------------------------------------------
 ! port-security
 
@@ -129,6 +138,9 @@ ASW1(config-if)# switchport port-security aging static
 
 ASW1(config)# errdisable recovery cause psecure-violation
 ASW1(config)# errdisable recovery interval 180
+
+ASW1# show port-security
+ASW1# show port-security int f0/1
 
 -------------------------------------------------
 ! layer 3 switch
@@ -189,6 +201,17 @@ ASW1(config-if)# spanning-tree portfast [edge] trunk
 ASW1(config-if)# spanning-tree vlan 30 cost 100
 ASW1(config-if)# spanning-tree vlan 30 port-priority 64
 
+ASW1# show spanning-tree
+ASW1# show spanning-tree detail
+ASW1# show spanning-tree interface g0/0/0
+ASW1# show spanning-tree interface g0/0/0 detail
+ASW1# show spanning-tree root
+ASW1# show spanning-tree summary
+ASW1# show spanning-tree vlan 30
+ASW1# show spanning-tree vlan 30 detail
+ASW1# show spanning-tree vlan 30 interface g0/0/0
+ASW1# show spanning-tree vlan 30 interface g0/0/0 detail
+
 -------------------------------------------------
 ! etherchannel
 
@@ -208,6 +231,12 @@ ASW1(config-if-range)# channel-group 1 mode active
 ASW1(config-if-range)# interface port-channel 1
 ASW1(config-if)# ip address 10.0.0.10 255.255.255.252
 
+ASW1# show etherchannel
+ASW1# show etherchannel load-balance
+ASW1# show etherchannel port-channel
+ASW1# show etherchannel summary
+ASW1# show etherchannel 12 summary
+
 -------------------------------------------------
 ! CDP 
 
@@ -218,6 +247,13 @@ ASW1(config)# [no] cdp advertise-v2
 
 ASW1(config-if)# [no] cdp enable
 
+ASW1# show cdp
+ASW1# show cdp entry R2
+ASW1# show cdp inteface [if]
+ASW1# show cdp neighbors
+ASW1# show cdp neighbors detail
+ASW1# show cdp traffic
+
 ! LLCP
 
 ASW1(config)# [no] lldp run
@@ -227,6 +263,13 @@ ASW1(config)# lldp reinit 10
 
 ASW1(config-if)# [no] lldp transmit
 ASW1(config-if)# [no] lldp receive
+
+ASW1# show lldp
+ASW1# show lldp entry R2
+ASW1# show lldp inteface [if]
+ASW1# show lldp neighbors
+ASW1# show lldp neighbors detail
+ASW1# show lldp traffic
 
 -------------------------------------------------
 ! DHCP snooping
@@ -242,7 +285,7 @@ ASW1(config-if-range)# ip dhcp snooping limit rate 1
 ASW1(config)# errdisable recovery cause dhcp-rate-limit
 
 -------------------------------------------------
-! show commands
+! other show commands
 
 ASW1> show mac address-table aging-time
 ASW1> show mac address-table count
@@ -252,23 +295,8 @@ ASW1> show mac address-table dynamic interface FastEthernet 0/1
 ASW1> show mac address-table dynamic vlan 1
 ASW1> show mac address-table secure
 
-ASW1# show calender
-ASW1# show cdp
-ASW1# show cdp entry R2
-ASW1# show cdp inteface [if]
-ASW1# show cdp neighbors
-ASW1# show cdp neighbors detail
-ASW1# show cdp traffic
-ASW1# show clock
-ASW1# show clock detail
-ASW1# show crypto key mypubkey rsa
 ASW1# show dhcp lease
 ASW1# show errdisable recovery
-ASW1# show etherchannel
-ASW1# show etherchannel load-balance
-ASW1# show etherchannel port-channel
-ASW1# show etherchannel summary
-ASW1# show etherchannel 12 summary
 ASW1# show file systems
 ASW1# show flash
 ASW1# show history
@@ -277,43 +305,21 @@ ASW1# show interfaces description
 ASW1# show interfaces g 9/1
 ASW1# show interfaces g 9/1 counters
 ASW1# show interfaces g 9/1 status
-ASW1# show interfaces g 9/1 switchport
 ASW1# show interfaces portchannel 1
 ASW1# show interfaces status
 ASW1# show interfaces vlan 30
 ASW1# show ip default-gateway
 ASW1# show ip interface brief
 ASW1# show ip interface g0/0
-ASW1# show ip ssh
-ASW1# show lldp
-ASW1# show lldp entry R2
-ASW1# show lldp inteface [if]
-ASW1# show lldp neighbors
-ASW1# show lldp neighbors detail
-ASW1# show lldp traffic
 ASW1# show logging
-ASW1# show port-security
-ASW1# show port-security int f0/1
 ASW1# show running-config
 ASW1# show running-config all
 ASW1# show running-config interface G1/0/1
 ASW1# show running-config | begin line vty
 ASW1# show running-config | include interface
 ASW1# show running-config | section ospf
-ASW1# show spanning-tree
-ASW1# show spanning-tree detail
-ASW1# show spanning-tree interface g0/0/0
-ASW1# show spanning-tree interface g0/0/0 detail
-ASW1# show spanning-tree root
-ASW1# show spanning-tree summary
-ASW1# show spanning-tree vlan 30
-ASW1# show spanning-tree vlan 30 detail
-ASW1# show spanning-tree vlan 30 interface g0/0/0
-ASW1# show spanning-tree vlan 30 interface g0/0/0 detail
-ASW1# show ssh
 ASW1# show startup-config
 ASW1# show version
-ASW1# show vtp status
 
 -------------------------------------------------
 ! other commands
