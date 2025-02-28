@@ -95,6 +95,7 @@ ASW1# show interfaces trunk
 ASW1# show interfaces g 0/1 trunk
 ASW1# show interfaces g 9/1 switchport
 ASW1# show vlan
+ASW1# show vlans
 ASW1# show vlan brief
 ASW1# show vlan id 2
 ASW1# show vlan name x
