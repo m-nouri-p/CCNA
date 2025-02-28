@@ -80,10 +80,17 @@ ASW1(config-if-range)# ^Z
 ASW1(config)# interface FastEthernet 0/2
 ASW1(config-if)# switchport trunk encapsulation dot1q
 ASW1(config-if)# switchport mode trunk 
-ASW1(config-if)# switchport trunk allowed vlan 30,40,50
-ASW1(config-if)# switchport trunk allowed vlan remove 30
+ASW1(config-if)# switchport trunk allowed vlan 30,40,50-60
+ASW1(config-if)# switchport trunk allowed vlan {remove|add|except|all|none} 
 ASW1(config-if)# switchport trunk native vlan 1001
 ASW1(config-if)# switchport nonegotiate
+
+ASW1# show interfaces trunk
+ASW1# show interfaces g 0/1 trunk
+ASW1# show vlan
+ASW1# show vlan brief
+ASW1# show vlan id 2
+ASW1# show vlan name x
 
 -------------------------------------------------
 ! copy and FTP/TFTP
@@ -271,11 +278,9 @@ ASW1# show interfaces g 9/1
 ASW1# show interfaces g 9/1 counters
 ASW1# show interfaces g 9/1 status
 ASW1# show interfaces g 9/1 switchport
-ASW1# show interfaces g 9/1 trunk
 ASW1# show interfaces portchannel 1
 ASW1# show interfaces status
 ASW1# show interfaces vlan 30
-ASW1# show interfaces trunk 
 ASW1# show ip default-gateway
 ASW1# show ip interface brief
 ASW1# show ip interface g0/0
@@ -308,10 +313,6 @@ ASW1# show spanning-tree vlan 30 interface g0/0/0 detail
 ASW1# show ssh
 ASW1# show startup-config
 ASW1# show version
-ASW1# show vlan
-ASW1# show vlan brief
-ASW1# show vlan id 2
-ASW1# show vlan name x
 ASW1# show vtp status
 
 -------------------------------------------------
