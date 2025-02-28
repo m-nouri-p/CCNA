@@ -196,6 +196,10 @@ R1(config)# ntp trusted-key 1
 R1(config)# ntp server 10.0.12.1 key 1
 R1(config)# ntp peer 10.0.12.1 key 1
 
+ASW1# show calender
+ASW1# show clock
+ASW1# show clock detail
+
 ---------------------------------------------------------
 ! DNS
 
