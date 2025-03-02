@@ -7,13 +7,31 @@ Switch# configure terminal
 Switch(config)# hostname ASW1 
 
 -------------------------------------------------
+! MAC, arp
+
+ASW1(config)# mac-address aaaa.bbbb.cccc
+ASW1# clear mac address-table dynamic vlan 3
+ASW1# clear mac address-table dynamic interface f0/1 
+ASW1# clear mac address-table address 0DF7.45BA.201C
+
+ASW1> show mac address-table aging-time
+ASW1> show mac address-table count
+ASW1> show mac address-table dynamic
+ASW1> show mac address-table dynamic address 0DF7.45BA.201C
+ASW1> show mac address-table dynamic interface FastEthernet 0/1
+ASW1> show mac address-table dynamic vlan 1
+ASW1> show mac address-table secure
+ASW1# show arp
+
+-------------------------------------------------
 ! md5
-ASW1(config)# enable secret somepassword1
-ASW1(config)# enable secret 5 somepassword1
+ASW1(config)# enable secret somepassword1 !--> md5
+ASW1(config)# enable algorithm-type md5 secret somepassword
+ASW1(config)# enable secret 5 somepassword1 !--> encrypted
 
 ! scrypt
 ASW1(config)# enable algorithm-type scrypt secret somepassword1
-ASW1(config)# enable secret 9 somepassword1 
+ASW1(config)# enable secret 9 somepassword1 !--> encrypted
 
 -------------------------------------------------
 ! enable shared password
@@ -288,15 +306,6 @@ ASW1(config)# errdisable recovery cause dhcp-rate-limit
 -------------------------------------------------
 ! other show commands
 
-ASW1> show mac address-table aging-time
-ASW1> show mac address-table count
-ASW1> show mac address-table dynamic
-ASW1> show mac address-table dynamic address 0DF7.45BA.201C
-ASW1> show mac address-table dynamic interface FastEthernet 0/1
-ASW1> show mac address-table dynamic vlan 1
-ASW1> show mac address-table secure
-
-ASW1# show arp
 ASW1# show dhcp lease
 ASW1# show errdisable recovery
 ASW1# show file systems
@@ -326,9 +335,6 @@ ASW1# show version
 -------------------------------------------------
 ! other commands
 
-ASW1# clear mac address-table dynamic vlan 3
-ASW1# clear mac address-table dynamic interface f0/1 
-ASW1# clear mac address-table address 0DF7.45BA.201C
 ASW1# debug all
 ASW1# debug spanning-tree events
 ASW1# disable
