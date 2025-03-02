@@ -296,6 +296,7 @@ ASW1> show mac address-table dynamic interface FastEthernet 0/1
 ASW1> show mac address-table dynamic vlan 1
 ASW1> show mac address-table secure
 
+ASW1# show arp
 ASW1# show dhcp lease
 ASW1# show errdisable recovery
 ASW1# show file systems
