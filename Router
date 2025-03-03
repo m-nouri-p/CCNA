@@ -52,7 +52,6 @@ R1(config-router)# default-information originate
 R1(config-router)# maximum-path 4
 R1(config-router)# distance 120
 R1(config-router)# redistribute static
-R1(config-router)# redistribute static subnets
 
 R1# show ip protocols
 
