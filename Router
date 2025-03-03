@@ -92,6 +92,9 @@ R1(config-router)# distance 120
 R1(config-router)# auto-cost reference-bandwidth 100000
 R1(config-router)# redistribute static
 R1(config-router)# redistribute static subnets
+R1(config-router)# passive-interface default
+R1(config-router)# no passive-interface g3/0
+R1(config-router)# shutdown
 
 R1# clear ip ospf process
 R1# debug ip ospf adj
@@ -105,11 +108,6 @@ R1(config-if)# ip ospf hello-interval 5
 R1(config-if)# ip ospf network {point-to-point|broadcast|non-broadcast}
 R1(config-if)# ip ospf priority 10
 R1(config-if)# bandwidth 10000
-
-R1(config-router)# passive-interface default
-R1(config-router)# no passive-interface g3/0
-
-R1(config-router)# shutdown
 
 R1# show ip ospf database
 R1# show ip ospf interface [if]
