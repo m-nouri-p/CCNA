@@ -124,6 +124,8 @@ R1(config-if)# ip address ...
 R1(config-if)# encapsulation {hdlc|ppp}
 R1(config-if)# no shut
 
+R1# show controllers serial 0/2
+
 ---------------------------------------------------------
 ! HSRP
 
@@ -309,7 +311,6 @@ R1# show ip nat translations
 ---------------------------------------------------------
 ! other show commands
 
-R1# show controllers serial 0/2
 R1# show hosts
 R1# show interfaces [number]
 R1# show interfaces [number] controller
