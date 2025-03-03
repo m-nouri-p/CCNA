@@ -86,6 +86,7 @@ R1(config-router)# network 4.4.4.4 0.0.0.0 area 0 !loopback
 R1(config-router)# default-information originate
 R1(config-router)# router-id A.B.C.D
 R1(config-router)# maximum-path 4
+R1(config-router)# distance 120
 R1(config-router)# auto-cost reference-bandwidth 100000
 R1(config-router)# redistribute static
 R1(config-router)# redistribute static subnets
