@@ -54,6 +54,8 @@ R1(config-router)# distance 120
 R1(config-router)# redistribute static
 R1(config-router)# redistribute static subnets
 
+R1# show ip protocols
+
 ---------------------------------------------------------
 ! EIGRP  
 
@@ -69,6 +71,8 @@ R1(config-router)# maximum-path 4
 R1(config-router)# distance 90
 R1(config-router)# redistribute static
 R1(config-router)# redistribute static subnets
+
+R1# show ip protocols
 
 ---------------------------------------------------------
 ! OSPF
@@ -103,6 +107,12 @@ R1(config-router)# passive-interface default
 R1(config-router)# no passive-interface g3/0
 
 R1(config-router)# shutdown
+
+R1# show ip ospf database
+R1# show ip ospf interface [if]
+R1# show ip ospf interface brief
+R1# show ip ospf neighbor
+R1# show ip protocols
 
 ---------------------------------------------------------
 ! serial
@@ -196,9 +206,11 @@ R1(config)# ntp trusted-key 1
 R1(config)# ntp server 10.0.12.1 key 1
 R1(config)# ntp peer 10.0.12.1 key 1
 
-ASW1# show calender
-ASW1# show clock
-ASW1# show clock detail
+R1# show calender
+R1# show clock
+R1# show clock detail
+R1# show ntp associations
+R1# show ntp status
 
 ---------------------------------------------------------
 ! DNS
@@ -286,7 +298,6 @@ R1(config)# clear ip nat translation *
 ! show commands
 
 R1# show access-lists
-R1# show arp
 R1# show controllers serial 0/2
 R1# show hosts
 R1# show interfaces [number]
@@ -299,16 +310,10 @@ R1# show ip eigrp topology
 R1# show ip interfaces brief
 R1# show ip nat statistics
 R1# show ip nat translations
-R1# show ip ospf database
-R1# show ip ospf interface [if]
-R1# show ip ospf interface brief
-R1# show ip ospf neighbor
 R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
 R1# show ipv6 neighbor
-R1# show ntp associations
-R1# show ntp status
 R1# show protocols [number]
 R1# show standby
 R1# show standby brief
