@@ -71,6 +71,8 @@ R1(config-router)# distance 90
 R1(config-router)# redistribute static
 R1(config-router)# redistribute static subnets
 
+R1# show ip eigrp neighbors
+R1# show ip eigrp topology
 R1# show ip protocols
 
 ---------------------------------------------------------
@@ -132,6 +134,9 @@ R1(config-if)# standby 1 ip A.B.C.D
 R1(config-if)# standby 1 priority 200
 R1(config-if)# standby 1 preempt
 
+R1# show standby
+R1# show standby brief
+
 ---------------------------------------------------------
 ! IPv6
 
@@ -181,6 +186,9 @@ R1(config)# ip access-list extended EXAMPLE
 R1(config-std-nacl)# [entry-number] deny {ip|tcp|udp|icmp|ospf|eigrp} {A.B.C.D|any|host} {A.B.C.D|any|host}
 R1(config-std-nacl)# permit {tcp|udp} {A.B.C.D|any|host} {eq|gt|lt|neq|range} any eq 80
 R1(config-std-nacl)# permit ip any any
+
+R1# show access-lists
+R1# show ip access-lists 
 
 ---------------------------------------------------------
 ! NTP
@@ -242,6 +250,8 @@ R1(config-if)# ip helper-address A.B.C.D
 R1(config)# int g0/1
 R1(config-if)# ip address dhcp
 
+R1# show ip dhcp binding
+
 ---------------------------------------------------------
 ! SNMP
 
@@ -294,29 +304,23 @@ R1(config)# ip nat inside source list 1 interface g0/0 overload
 
 R1(config)# clear ip nat translation *
 
----------------------------------------------------------
-! show commands
+R1# show ip nat statistics
+R1# show ip nat translations
 
-R1# show access-lists
+---------------------------------------------------------
+! other show commands
+
 R1# show controllers serial 0/2
 R1# show hosts
 R1# show interfaces [number]
 R1# show interfaces [number] controller
-R1# show ip access-lists 
 R1# show ip arp
-R1# show ip dhcp binding
-R1# show ip eigrp neighbors
-R1# show ip eigrp topology
 R1# show ip interfaces brief
-R1# show ip nat statistics
-R1# show ip nat translations
 R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
 R1# show ipv6 neighbor
 R1# show protocols [number]
-R1# show standby
-R1# show standby brief
 R1# show vlans
 
 ---------------------------------------------------------
