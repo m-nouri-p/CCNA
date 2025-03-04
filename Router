@@ -153,6 +153,8 @@ R1(config-if)# ipv6 address 2001:db8:1:1::99/128 anycast
 R1(config)# interface G0/1
 R1(config-if)# ipv6 address autoconfig
 
+R1# show ipv6 neighbor
+
 ---------------------------------------------------------
 ! ACL
 ! Standard 
@@ -319,7 +321,6 @@ R1# show ip interfaces brief
 R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
-R1# show ipv6 neighbor
 R1# show protocols [number]
 R1# show vlans
 
