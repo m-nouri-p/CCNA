@@ -263,7 +263,6 @@ ASW1(config)# [no] cdp run
 ASW1(config)# cdp timer 120
 ASW1(config)# cdp holdtime 200
 ASW1(config)# [no] cdp advertise-v2
-
 ASW1(config-if)# [no] cdp enable
 
 ASW1# show cdp
@@ -279,7 +278,6 @@ ASW1(config)# [no] lldp run
 ASW1(config)# lldp timer 120
 ASW1(config)# lldp holdtime 200
 ASW1(config)# lldp reinit 10
-
 ASW1(config-if)# [no] lldp transmit
 ASW1(config-if)# [no] lldp receive
 
