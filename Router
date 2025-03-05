@@ -184,6 +184,8 @@ R1(config-if)# ip access-group BLOCK_BOB in
 
 ! Extended 
 
+R1(config)# access-list 1 deny protocol 192.168.1.0 0.0.0.255??????????
+
 R1(config)# ip access-list extended EXAMPLE
 R1(config-std-nacl)# [entry-number] deny {ip|tcp|udp|icmp|ospf|eigrp} {A.B.C.D|any|host} {A.B.C.D|any|host}
 R1(config-std-nacl)# permit {tcp|udp} {A.B.C.D|any|host} {eq|gt|lt|neq|range} any eq 80
