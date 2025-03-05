@@ -184,7 +184,7 @@ R1(config-if)# ip access-group BLOCK_BOB in
 
 ! Extended 
 
-R1(config)# access-list 1 deny protocol 192.168.1.0 0.0.0.255??????????
+R1(config)# access-list 1 deny {protocol} {addr+mask} {addr+mask}
 
 R1(config)# ip access-list extended EXAMPLE
 R1(config-std-nacl)# [entry-number] deny {ip|tcp|udp|icmp|ospf|eigrp} {A.B.C.D|any|host} {A.B.C.D|any|host}
@@ -204,7 +204,7 @@ R1# calendar set 8:26:00 12 jan 2025
 R1# clock update-calendar
 R1# clock read-calendar
 
-R1(config)# clock summer-time {name} {start} {end} [offset]
+R1(config)# clock summer-time {name} recurring {start of DST} {end of DST} [offset]
 R1(config)# ntp server A.B.C.D
 R1(config)# ntp server A.B.C.D [prefer]
 R1(config)# ntp peer A.B.C.D
