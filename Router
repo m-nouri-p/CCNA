@@ -234,6 +234,8 @@ R1(config)# ip name-server 8.8.8.8
 R1(config)# ip domain lookup
 R1(config)# ip domain name mohammad.com
 
+R1# show hosts
+
 ---------------------------------------------------------
 ! DHCP
 
@@ -314,7 +316,6 @@ R1# show ip nat translations
 ---------------------------------------------------------
 ! other show commands
 
-R1# show hosts
 R1# show interfaces [number]
 R1# show interfaces [number] controller
 R1# show ip arp
