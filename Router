@@ -261,7 +261,7 @@ R1(config-if)# ip address dhcp
 R1# show ip dhcp binding
 
 ---------------------------------------------------------
-! SNMP
+! SNMP agent R1
 
 R1(config)# snmp-server contact example@google.com
 R1(config)# snmp-server location mohammad's house
