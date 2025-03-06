@@ -272,6 +272,7 @@ R1(config)# snmp-server host 192.168.1.10 version 2c password2
 R1(config)# snmp-server enable traps snmp linkdown linkup
 R1(config)# snmp-server enable traps config
 
+R1# show snmp [community|host|contact|stats|lacation|mib|...]
 ---------------------------------------------------------
 ! syslog
 
