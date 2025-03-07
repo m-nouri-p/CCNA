@@ -24,6 +24,7 @@ ASW1> show mac address-table secure
 ASW1# show arp
 
 -------------------------------------------------
+! password for config mode
 ! md5
 ASW1(config)# enable secret somepassword1 !--> md5
 ASW1(config)# enable algorithm-type md5 secret somepassword
@@ -34,7 +35,7 @@ ASW1(config)# enable algorithm-type scrypt secret somepassword1
 ASW1(config)# enable secret 9 somepassword1 !--> encrypted
 
 -------------------------------------------------
-! enable shared password
+! enable shared password for lines
 
 ASW1(config)# line console 0
 ASW1(config-line)# password somepassword2
