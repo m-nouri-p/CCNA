@@ -62,6 +62,8 @@ DSW1(config)# ip default-gateway 192.168.1.1
 DSW1(config)# ip domain name example.com
 DSW1(config)# crypto key generate rsa [modulus 1024]
 DSW1(config)# ip ssh version 2
+DSW1(config)# ip ssh time-out 30
+DSW1(config)# ip ssh authentication-retries 2
 
 ASW1(config)# username mohammad secret nouri
 ASW1(config)# username mohammad algorithm-type scrypt secret nouri
