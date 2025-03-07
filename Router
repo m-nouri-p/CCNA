@@ -292,6 +292,8 @@ R1(config)# service sequence-numbers
 
 R1(config-line)# logging synchronous
 
+ASW1# show logging
+
 ---------------------------------------------------------
 ! NAT
 
