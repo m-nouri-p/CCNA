@@ -334,6 +334,8 @@ ASW1(config-if-range)# ip dhcp snooping limit rate 1
 
 ASW1(config)# errdisable recovery cause dhcp-rate-limit
 
+ASW1# show ip dhcp snooping binding
+
 -------------------------------------------------
 ! other show commands
 
