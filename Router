@@ -259,6 +259,7 @@ R1(config)# int g0/1
 R1(config-if)# ip address dhcp
 
 R1# show ip dhcp binding
+R1# show ip dhcp pool
 
 ---------------------------------------------------------
 ! SNMP agent R1
