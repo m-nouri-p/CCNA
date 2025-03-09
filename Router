@@ -319,6 +319,30 @@ R1# show ip nat statistics
 R1# show ip nat translations
 
 ---------------------------------------------------------
+! QoS
+
+Router(config)# class-map [match-all|match-any] HTTP-MAP
+Router(config-cmap)# match access-group ACL_NAME
+Router(config-cmap)# match protocol HTTP
+Router(config-cmap)# match dscp DSCP_VALUE
+
+Router(config-cmap)# class-map [match-all|match-any] ICMP-MAP
+Router(config-cmap)# match access-group ACL_NAME2
+Router(config-cmap)# match protocol ICMP
+Router(config-cmap)# match dscp DSCP_VALUE2
+
+Router(config-cmap)# policy-map G0/0_OUT
+Router(config-pmap)# class HTTP-MAP
+Router(config-pmap-c)# set ip dscp AF31
+Router(config-pmap-c)# priority percent 20
+
+Router(config-pmap-c)# class ICMP-MAP
+Router(config-pmap-c)# set ip dscp AF33
+Router(config-pmap-c)# priority percent 10
+
+Router(config-pmap-c)# int g0/0
+Router(config-if)#service-policy output G0/0_OUT
+---------------------------------------------------------
 ! other show commands
 
 R1# show interfaces [number]
