@@ -258,6 +258,8 @@ R1(config-if)# ip helper-address A.B.C.D
 R1(config)# int g0/1
 R1(config-if)# ip address dhcp
 
+R1# clear ip dhcp binding *
+
 R1# show ip dhcp binding
 R1# show ip dhcp pool
 
