@@ -334,7 +334,22 @@ ASW1(config-if-range)# ip dhcp snooping limit rate 1
 
 ASW1(config)# errdisable recovery cause dhcp-rate-limit
 
+ASW1# show ip dhcp snooping
 ASW1# show ip dhcp snooping binding
+
+-------------------------------------------------
+! DAI
+
+ASW1(config)# ip arp inspection vlan 1
+ASW1(config)# ip arp inspection validate {dst-mac|ip|src-mac}
+ASW1(config-if)# int range g0/1-5
+ASW1(config-if-range)# ip arp inspeciton trust
+ASW1(config-if-range)# interface g 0/6-7
+ASW1(config-if-range)# ip arp inspection limit rate 25 burst interval 2
+
+ASW1(config)# errdisable recovery cause arp-inspection
+
+ASW1# show ip arp inspection interfaces
 
 -------------------------------------------------
 ! other show commands
