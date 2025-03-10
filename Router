@@ -348,6 +348,7 @@ Router(config-if)#service-policy output G0/0_OUT
 ---------------------------------------------------------
 ! other show commands
 
+R1# show arp
 R1# show interfaces [number]
 R1# show interfaces [number] controller
 R1# show ip arp
@@ -356,6 +357,7 @@ R1# show ip route
 R1# show ip route {static|connected|ospf|eigrp} 
 R1# show ip route 172.16.2.0
 R1# show protocols [number]
+R1# show vlan
 R1# show vlans
 
 ---------------------------------------------------------
