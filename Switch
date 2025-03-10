@@ -340,11 +340,11 @@ ASW1# show ip dhcp snooping binding
 -------------------------------------------------
 ! DAI
 
-ASW1(config)# ip arp inspection vlan 1
+ASW1(config)# ip arp inspection vlan 1,5,10
 ASW1(config)# ip arp inspection validate {dst-mac|ip|src-mac}
-ASW1(config)# arp access-list ARP-ACL-1
+ASW1(config)# arp access-list ARP-ACL-5
 ASW1(config-arp-nacl)# permit ip host A.B.C.D mac host E.F.G 
-ASW1(config)# ip arp inspection filter ARP-ACL-1 vlan 1
+ASW1(config)# ip arp inspection filter ARP-ACL-1 vlan 5
 ASW1(config)# interface range g0/1-5
 ASW1(config-if-range)# ip arp inspeciton trust
 ASW1(config-if-range)# interface range g 0/6-7
