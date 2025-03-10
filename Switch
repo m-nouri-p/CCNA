@@ -30,7 +30,14 @@ ASW1# show ip interface g0/0
 -------------------------------------------------
 ! MAC, arp
 
-ASW1(config)# mac-address aaaa.bbbb.cccc
+ASW1(config)# interface vlan 10
+ASW1(config-if)# mac-address aaaa.bbbb.cccc
+
+ASW1(config)# interface port-channel 1
+ASW1(config-if)# mac-address aaaa.bbbb.cccc
+
+ASW1(config)# mac address-table static aaaa.bbbb.cccc vlan 10 interface G0/2
+
 ASW1# clear mac address-table dynamic vlan 3
 ASW1# clear mac address-table dynamic interface f0/1 
 ASW1# clear mac address-table address 0DF7.45BA.201C
@@ -42,7 +49,6 @@ ASW1> show mac address-table dynamic address 0DF7.45BA.201C
 ASW1> show mac address-table dynamic interface FastEthernet 0/1
 ASW1> show mac address-table dynamic vlan 1
 ASW1> show mac address-table secure
-ASW1# show arp
 
 -------------------------------------------------
 ! password for config mode
