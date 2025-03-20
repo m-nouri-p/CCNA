@@ -346,6 +346,15 @@ Router(config-pmap-c)# priority percent 10
 Router(config-pmap-c)# int g0/0
 Router(config-if)#service-policy output G0/0_OUT
 ---------------------------------------------------------
+! GRE
+
+Router(config)# interface tunnel 0
+Router(config-if)# ip address A.B.C.D A.B.C.D
+Router(config-if)# tunnel source g0/0/0
+Router(config-if)# tunnel destination A.B.C.D
+
+
+---------------------------------------------------------
 ! other show commands
 
 R1# show arp
