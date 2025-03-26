@@ -352,7 +352,17 @@ Router(config)# interface tunnel 0
 Router(config-if)# ip address A.B.C.D A.B.C.D
 Router(config-if)# tunnel source g0/0/0
 Router(config-if)# tunnel destination A.B.C.D
+---------------------------------------------------------
+! VRF
 
+Router(config)# ip vrf CUSTOMER1
+Router(config-vrf)# ip vrf CUSTOMER2
+Router(config-vrf)# interface g0/0
+Router(config-if)# ip vrf forwarding CUSTOMER1
+Router(config-if)# ip address A.B.C.D A.B.C.D
+Router(config-if)# no shutdown
+
+Router# show ip route vrf CUSTOMER1
 
 ---------------------------------------------------------
 ! other show commands
