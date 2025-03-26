@@ -363,6 +363,7 @@ Router(config-if)# ip address A.B.C.D A.B.C.D
 Router(config-if)# no shutdown
 
 Router# show ip route vrf CUSTOMER1
+Router# ping vrf CUSTOMER1 A.B.C.D
 
 ---------------------------------------------------------
 ! other show commands
