@@ -124,6 +124,7 @@ R1(config-if)# ip address ...
 R1(config-if)# encapsulation {hdlc|ppp}
 R1(config-if)# no shut
 
+R1# show controllers
 R1# show controllers serial 0/2
 
 ---------------------------------------------------------
