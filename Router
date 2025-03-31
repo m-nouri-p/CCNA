@@ -219,7 +219,7 @@ R1(config)# ntp trusted-key 1
 R1(config)# ntp server 10.0.12.1 key 1
 R1(config)# ntp peer 10.0.12.1 key 1
 
-R1# show calender
+R1# show calendar
 R1# show clock
 R1# show clock detail
 R1# show ntp associations
