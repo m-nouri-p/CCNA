@@ -142,10 +142,8 @@ ASW1(config-if)# switchport nonegotiate
 
 ASW1(config-if)# switchport mode dynamic {desirable|auto}
 
-ASW1# show interfaces switchport
-ASW1# show interfaces g 9/1 switchport
-ASW1# show interfaces trunk
-ASW1# show interfaces g 0/1 trunk
+ASW1# show interfaces [g 9/1] switchport
+ASW1# show interfaces [g 0/1] trunk
 ASW1# show vlan
 ASW1# show vlans
 ASW1# show vlan brief
@@ -233,11 +231,9 @@ ASW1# erase nvram:
 ASW1(config)# errdisable recovery cause bpdugaurd
 ASW1(config)# errdisable recovery interval 100
 ASW1(config)# spanning-tree loopgaurd default
-ASW1(config)# spanning-tree mode pvst
-ASW1(config)# spanning-tree mode rapid-pvst
+ASW1(config)# spanning-tree mode {pvst|rapid-pvst}
 ASW1(config)# spanning-tree portfast [edge] default
-ASW1(config)# spanning-tree portfast [edge] bpdufilter default
-ASW1(config)# spanning-tree portfast [edge] bpdugaurd default
+ASW1(config)# spanning-tree portfast [edge] {bpdugaurd|bpdufilter} default
 ASW1(config)# spanning-tree vlan 10 forward-time 8
 ASW1(config)# spanning-tree vlan 10 hello-time 4
 ASW1(config)# spanning-tree vlan 10 max-age 10
@@ -245,33 +241,20 @@ ASW1(config)# spanning-tree vlan 10 root primary
 ASW1(config)# spanning-tree vlan 10 root secondary
 ASW1(config)# spanning-tree vlan 10 prority 28000
 
-ASW1(config-if)# spanning-tree bpdufilter disable
-ASW1(config-if)# spanning-tree bpdufilter enable
-ASW1(config-if)# spanning-tree bpdugaurd disable
-ASW1(config-if)# spanning-tree bpdugaurd enable
-ASW1(config-if)# spanning-tree cost 10
-ASW1(config-if)# spanning-tree gaurd loop
-ASW1(config-if)# spanning-tree gaurd none
-ASW1(config-if)# spanning-tree gaurd root
-ASW1(config-if)# spanning-tree link-type point-to-point
-ASW1(config-if)# spanning-tree link-type shared
-ASW1(config-if)# spanning-tree port-priority 64
+ASW1(config-if)# spanning-tree {bpdugaurd|bpdufilter} {enable|disable}
+ASW1(config-if)# spanning-tree gaurd {loop|root|none}
+ASW1(config-if)# spanning-tree link-type {point-to-point|shared}
 ASW1(config-if)# spanning-tree portfast [edge]
 ASW1(config-if)# spanning-tree portfast disable
 ASW1(config-if)# spanning-tree portfast [edge] trunk
-ASW1(config-if)# spanning-tree vlan 30 cost 100
-ASW1(config-if)# spanning-tree vlan 30 port-priority 64
+ASW1(config-if)# spanning-tree [vlan 30] {cost 100|port-priority 64}
 
-ASW1# show spanning-tree
-ASW1# show spanning-tree detail
-ASW1# show spanning-tree interface g0/0/0
-ASW1# show spanning-tree interface g0/0/0 detail
+ASW1# show spanning-tree [detail]
+ASW1# show spanning-tree interface g0/0/0 [detail]
 ASW1# show spanning-tree root
 ASW1# show spanning-tree summary
-ASW1# show spanning-tree vlan 30
-ASW1# show spanning-tree vlan 30 detail
-ASW1# show spanning-tree vlan 30 interface g0/0/0
-ASW1# show spanning-tree vlan 30 interface g0/0/0 detail
+ASW1# show spanning-tree vlan 30 [detail]
+ASW1# show spanning-tree vlan 30 interface g0/0/0 [detail]
 
 -------------------------------------------------
 ! etherchannel
