@@ -28,8 +28,7 @@ R1(config-subif)# ip address 192.168.10.1 255.255.255.0
 
 R1(config)# ip route 0.0.0.0 0.0.0.0 213.10.0.45
 R1(config)# ip route 192.168.10.0 255.255.255.0 192.168.20.2 [administrative number] [permanent] 
-R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0
-R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0 192.168.20.2
+R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0 [192.168.20.2]
 
 ---------------------------------------------------------
 ! if lo (virtual)
@@ -72,8 +71,7 @@ R1(config-router)# variance 1
 R1(config-router)# redistribute static
 R1(config-router)# redistribute static subnets
 
-R1# show ip eigrp neighbors
-R1# show ip eigrp topology
+R1# show ip eigrp {neighbors|topology}
 R1# show ip protocols
 
 ---------------------------------------------------------
@@ -110,7 +108,7 @@ R1(config-if)# ip ospf priority 10
 R1(config-if)# bandwidth 10000
 
 R1# show ip ospf database
-R1# show ip ospf interface [if]
+R1# show ip ospf interface [g0/0]
 R1# show ip ospf interface brief
 R1# show ip ospf neighbor
 R1# show ip protocols
@@ -120,12 +118,11 @@ R1# show ip protocols
 
 R1(config)# int serial 0/2
 R1(config-if)# clock rate 64000
-R1(config-if)# ip address ...
+R1(config-if)# ip address A.B.C.D A.B.C.D
 R1(config-if)# encapsulation {hdlc|ppp}
-R1(config-if)# no shut
+R1(config-if)# no shutdown
 
-R1# show controllers
-R1# show controllers serial 0/2
+R1# show controllers [serial 0/2]
 
 ---------------------------------------------------------
 ! HSRP
@@ -136,8 +133,7 @@ R1(config-if)# standby 1 ip A.B.C.D
 R1(config-if)# standby 1 priority 200
 R1(config-if)# standby 1 preempt
 
-R1# show standby
-R1# show standby brief
+R1# show standby [brief]
 
 ---------------------------------------------------------
 ! IPv6
@@ -151,12 +147,12 @@ R1(config-if)# ipv6 enable
 
 R1(config-if)# ipv6 address 2001:db8:1:1::99/128 anycast
 
-R1(config-if)# ipv6 address autoconfig
+R1(config-if)# ipv6 address autoconfig !==> SLAAC
 
 R1# show ipv6 neighbor
 
 ---------------------------------------------------------
-! ACL
+! IP ACL
 ! Standard 
 
 R1(config)# access-list 1 deny 1.1.1.1 0.0.0.0
@@ -185,20 +181,19 @@ R1(config-if)# ip access-group BLOCK_BOB in
 
 ! Extended 
 
-R1(config)# access-list 1 deny {protocol} {addr+mask} {addr+mask}
+R1(config)# access-list 150 deny {protocol} {addr+mask} {addr+mask}
 
 R1(config)# ip access-list extended EXAMPLE
 R1(config-std-nacl)# [entry-number] deny {ip|tcp|udp|icmp|ospf|eigrp} {A.B.C.D|any|host} {A.B.C.D|any|host}
 R1(config-std-nacl)# permit {tcp|udp} {A.B.C.D|any|host} {eq|gt|lt|neq|range} any eq 80
 R1(config-std-nacl)# permit ip any any
 
-R1# show access-lists
-R1# show ip access-lists 
+R1# show [ip] access-lists 
 
 ---------------------------------------------------------
 ! NTP
 
-R1(config)# clock timezone Tehran 3 30
+R1(config)# clock timezone TEH 3 30
 
 R1# clock set 8:26:00 12 jan 2025
 R1# calendar set 8:26:00 12 jan 2025
@@ -210,8 +205,8 @@ R1(config)# ntp server A.B.C.D
 R1(config)# ntp server A.B.C.D [prefer]
 R1(config)# ntp peer A.B.C.D
 R1(config)# ntp update-calendar
-R1(config)# ntp master [stratum]
-R1(config)# ntp source {if}
+R1(config)# ntp master [10]
+R1(config)# ntp source Loopback0
 
 R1(config)# ntp authenticate
 R1(config)# ntp authenticate-key 1 md5 mohammad
@@ -220,10 +215,8 @@ R1(config)# ntp server 10.0.12.1 key 1
 R1(config)# ntp peer 10.0.12.1 key 1
 
 R1# show calendar
-R1# show clock
-R1# show clock detail
-R1# show ntp associations
-R1# show ntp status
+R1# show clock [detail]
+R1# show ntp {associations|status}
 
 ---------------------------------------------------------
 ! DNS
@@ -245,7 +238,7 @@ R1(config)# dhcp server
 R1(config)# ip dhcp excluded-addresses 192.168.1.1 192.168.1.10
 R1(config)# ip dhcp pool FIRST_LAN
 R1(dhcp-config)# network 192.168.1.0 {255.255.255.0|/24}
-R1(dhcp-config)# dns-server 8.8.8.8
+R1(dhcp-config)# dns-server 8.8.8.8 1.1.1.1
 R1(dhcp-config)# domain-name mohammad.com
 R1(dhcp-config)# default-router 192.168.1.1
 R1(dhcp-config)# lease {0 5 30|infinite}
@@ -259,18 +252,17 @@ R1(config-if)# ip helper-address A.B.C.D
 R1(config)# int g0/1
 R1(config-if)# ip address dhcp
 
-R1# clear ip dhcp binding *
+R1# clear ip dhcp binding * 
 
-R1# show ip dhcp binding
-R1# show ip dhcp pool
+R1# show ip dhcp {binding|pool}
 
 ---------------------------------------------------------
 ! SNMP agent R1
 
 R1(config)# snmp-server contact example@google.com
 R1(config)# snmp-server location mohammad's house
-R1(config)# snmp-server community {password1|public} ro
-R1(config)# snmp-server community {password2|private} rw
+R1(config)# snmp-server community password1 ro
+R1(config)# snmp-server community password2 rw
 R1(config)# snmp-server host 192.168.1.10 version 2c password1
 R1(config)# snmp-server host 192.168.1.10 version 2c password2
 R1(config)# snmp-server enable traps snmp linkdown linkup
@@ -291,7 +283,7 @@ R1(config)# logging A.B.C.D
 R1(config)# logging host A.B.C.D
 R1(config)# logging trap debugging
 
-R1(config)# service timestamps log datetime
+R1(config)# service timestamps log {datetime|uptime}
 R1(config)# service sequence-numbers
 
 R1(config-line)# logging synchronous
@@ -319,8 +311,7 @@ R1(config)# ip nat inside source list 1 interface g0/0 [overload]
 
 R1(config)# clear ip nat translation *
 
-R1# show ip nat statistics
-R1# show ip nat translations
+R1# show ip nat {statistics|translations}
 
 ---------------------------------------------------------
 ! QoS
@@ -351,8 +342,8 @@ Router(config-if)#service-policy output G0/0_OUT
 
 Router(config)# interface tunnel 0
 Router(config-if)# ip address A.B.C.D A.B.C.D
-Router(config-if)# tunnel source g0/0/0
-Router(config-if)# tunnel destination A.B.C.D
+Router(config-if)# tunnel source {g0/0/0|A.B.C.D}
+Router(config-if)# tunnel destination {g0/0/0|A.B.C.D}
 ---------------------------------------------------------
 ! VRF
 
@@ -369,21 +360,17 @@ Router# ping vrf CUSTOMER1 A.B.C.D
 ---------------------------------------------------------
 ! other show commands
 
-R1# show arp
-R1# show interfaces [number]
-R1# show interfaces [number] controller
-R1# show ip arp
-R1# show ip interfaces brief
-R1# show ip route
-R1# show ip route {static|connected|ospf|eigrp} 
-R1# show ip route 172.16.2.0
-R1# show protocols [number]
+R1# show interfaces [g0/0] [controller]
+R1# show [ip] arp
+R1# show ip interfaces [brief]
+R1# show ip route [static|connected|ospf|eigrp|A.B.C.D]
+R1# show protocols [g0/0]
 R1# show vlans
 
 ---------------------------------------------------------
 ! other
 
-R1(config)# clear ip arp [number]
+R1(config)# clear ip arp [g0/0]
 R1(config)# default interface g0/0
 
 R1(config-if)# ip mtu 1400
