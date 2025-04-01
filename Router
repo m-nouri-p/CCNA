@@ -231,7 +231,7 @@ R1# show ntp status
 R1(config)# ip dns server
 R1(config)# ip host R1 192.168.1.2
 R1(config)# ip host PC1 192.168.1.3
-R1(config)# ip name-server 8.8.8.8
+R1(config)# ip name-server 8.8.8.8 1.1.1.1
 R1(config)# ip domain lookup
 R1(config)# ip domain name mohammad.com
 
