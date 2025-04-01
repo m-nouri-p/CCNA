@@ -371,7 +371,6 @@ R1# show vlans
 ! other
 
 R1(config)# clear ip arp [g0/0]
-R1(config)# default interface g0/0
 
 R1(config-if)# ip mtu 1400
 R1(config-if)# [no] negotiation auto
