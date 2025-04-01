@@ -225,11 +225,11 @@ ASW1(config)# spanning-tree loopgaurd default
 ASW1(config)# spanning-tree mode {pvst|rapid-pvst}
 ASW1(config)# spanning-tree portfast [edge] default
 ASW1(config)# spanning-tree portfast [edge] {bpdugaurd|bpdufilter} default
-ASW1(config)# spanning-tree vlan 10 forward-time 8
-ASW1(config)# spanning-tree vlan 10 hello-time 4
-ASW1(config)# spanning-tree vlan 10 max-age 10
-ASW1(config)# spanning-tree vlan 10 root {primary|secondary}
-ASW1(config)# spanning-tree vlan 10 prority 28000
+ASW1(config)# spanning-tree vlan 10,20 forward-time 8
+ASW1(config)# spanning-tree vlan 10,20 hello-time 4
+ASW1(config)# spanning-tree vlan 10,20 max-age 10
+ASW1(config)# spanning-tree vlan 10,20 root {primary|secondary}
+ASW1(config)# spanning-tree vlan 10,20 prority 28000
 
 ASW1(config-if)# spanning-tree {bpdugaurd|bpdufilter} {enable|disable}
 ASW1(config-if)# spanning-tree gaurd {loop|root|none}
@@ -237,7 +237,7 @@ ASW1(config-if)# spanning-tree link-type {point-to-point|shared}
 ASW1(config-if)# spanning-tree portfast [edge]
 ASW1(config-if)# spanning-tree portfast disable
 ASW1(config-if)# spanning-tree portfast [edge] trunk
-ASW1(config-if)# spanning-tree [vlan 30] {cost 100|port-priority 64}
+ASW1(config-if)# spanning-tree [vlan 20,30] {cost 100|port-priority 64}
 
 ASW1# show spanning-tree root
 ASW1# show spanning-tree summary
