@@ -241,7 +241,7 @@ ASW1(config-if)# spanning-tree [vlan 20,30] {cost 100|port-priority 64}
 
 ASW1# show spanning-tree root
 ASW1# show spanning-tree summary
-ASW1# show spanning-tree [vlan 30] [interface g0/0/0] [detail]
+ASW1# show spanning-tree [vlan 20,30] [interface g0/0/0] [detail]
 
 -------------------------------------------------
 ! etherchannel
