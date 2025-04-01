@@ -292,7 +292,7 @@ ASW1(config-if)# [no] cdp enable
 
 ASW1# show cdp
 ASW1# show cdp entry R2
-ASW1# show cdp inteface [if]
+ASW1# show cdp inteface [g0/0]
 ASW1# show cdp neighbors
 ASW1# show cdp neighbors detail
 ASW1# show cdp traffic
