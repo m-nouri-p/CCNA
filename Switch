@@ -14,6 +14,8 @@ ASW1(config-if)# [no] duplex ?
 ASW1(config-if)# [no] mdix-auto
 ASW1(config-if)# [no] speed ?
 
+ASW1(config)# default interface g0/0
+
 ASW1# show interfaces
 ASW1# show interfaces description
 ASW1# show interfaces g 9/1
