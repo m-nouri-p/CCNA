@@ -141,14 +141,13 @@ ASW1(config-if)# switchport trunk native vlan 1001
 ASW1(config-if)# switchport nonegotiate
 
 ASW1(config-if)# switchport mode dynamic {desirable|auto}
+ASW1(config-vlan)# [no] shutdown
+ASW1(config)# [no] shutdown vlan 10
 
 ASW1# show interfaces [g 9/1] switchport
 ASW1# show interfaces [g 0/1] trunk
-ASW1# show vlan
+ASW1# show vlan [brief|id 2|name x]
 ASW1# show vlans
-ASW1# show vlan brief
-ASW1# show vlan id 2
-ASW1# show vlan name x
 
 -------------------------------------------------
 ! save configs
@@ -212,11 +211,9 @@ R-SW(config-if)# ip address 192.168.1.193 255.255.255.252
 -------------------------------------------------
 ! banner
 
+ASW1(config)# banner motd % 
 ASW1(config)# banner login ^
 ASW1(config)# banner exec $
-
-! set the message of the day
-ASW1(config)# banner motd % !
 
 -------------------------------------------------
 ! erace all configs
@@ -237,8 +234,7 @@ ASW1(config)# spanning-tree portfast [edge] {bpdugaurd|bpdufilter} default
 ASW1(config)# spanning-tree vlan 10 forward-time 8
 ASW1(config)# spanning-tree vlan 10 hello-time 4
 ASW1(config)# spanning-tree vlan 10 max-age 10
-ASW1(config)# spanning-tree vlan 10 root primary
-ASW1(config)# spanning-tree vlan 10 root secondary
+ASW1(config)# spanning-tree vlan 10 root {primary|secondary}
 ASW1(config)# spanning-tree vlan 10 prority 28000
 
 ASW1(config-if)# spanning-tree {bpdugaurd|bpdufilter} {enable|disable}
@@ -249,12 +245,9 @@ ASW1(config-if)# spanning-tree portfast disable
 ASW1(config-if)# spanning-tree portfast [edge] trunk
 ASW1(config-if)# spanning-tree [vlan 30] {cost 100|port-priority 64}
 
-ASW1# show spanning-tree [detail]
-ASW1# show spanning-tree interface g0/0/0 [detail]
 ASW1# show spanning-tree root
 ASW1# show spanning-tree summary
-ASW1# show spanning-tree vlan 30 [detail]
-ASW1# show spanning-tree vlan 30 interface g0/0/0 [detail]
+ASW1# show spanning-tree [vlan 30] [interface g0/0/0] [detail]
 
 -------------------------------------------------
 ! etherchannel
@@ -275,11 +268,8 @@ ASW1(config-if-range)# channel-group 1 mode active
 ASW1(config-if-range)# interface port-channel 1
 ASW1(config-if)# ip address 10.0.0.10 255.255.255.252
 
-ASW1# show etherchannel
+ASW1# show etherchannel [12] [port-channel|summary|detail]
 ASW1# show etherchannel load-balance
-ASW1# show etherchannel port-channel
-ASW1# show etherchannel summary
-ASW1# show etherchannel 12 summary
 
 -------------------------------------------------
 ! CDP 
@@ -293,8 +283,7 @@ ASW1(config-if)# [no] cdp enable
 ASW1# show cdp
 ASW1# show cdp entry R2
 ASW1# show cdp inteface [g0/0]
-ASW1# show cdp neighbors
-ASW1# show cdp neighbors detail
+ASW1# show cdp neighbors [detail]
 ASW1# show cdp traffic
 
 ! LLCP
@@ -308,16 +297,15 @@ ASW1(config-if)# [no] lldp receive
 
 ASW1# show lldp
 ASW1# show lldp entry R2
-ASW1# show lldp inteface [if]
-ASW1# show lldp neighbors
-ASW1# show lldp neighbors detail
+ASW1# show lldp inteface [g0/0]
+ASW1# show lldp neighbors [detail]
 ASW1# show lldp traffic
 
 -------------------------------------------------
 ! DHCP snooping
 
 ASW1(config)# ip dhcp snooping
-ASW1(config)# ip dhcp snooping vlan 1
+ASW1(config)# ip dhcp snooping vlan 2,12,30
 ASW1(config)# no ip dhcp snooping information option
 ASW1(config)# interface g 0/0
 ASW1(config-if)# ip dhcp snooping trust
@@ -326,17 +314,16 @@ ASW1(config-if-range)# ip dhcp snooping limit rate 1
 
 ASW1(config)# errdisable recovery cause dhcp-rate-limit
 
-ASW1# show ip dhcp snooping
-ASW1# show ip dhcp snooping binding
+ASW1# show ip dhcp snooping [binding]
 
 -------------------------------------------------
 ! DAI
 
 ASW1(config)# ip arp inspection vlan 1,5,10
 ASW1(config)# ip arp inspection validate {dst-mac|ip|src-mac}
-ASW1(config)# arp access-list ARP-ACL-5
+ASW1(config)# arp access-list ARP-ACL-5   !==> It isn't IP ACL
 ASW1(config-arp-nacl)# permit ip host A.B.C.D mac host E.F.G 
-ASW1(config)# ip arp inspection filter ARP-ACL-1 vlan 5
+ASW1(config)# ip arp inspection filter ARP-ACL-5 vlan 5
 ASW1(config)# interface range g0/1-5
 ASW1(config-if-range)# ip arp inspeciton trust
 ASW1(config-if-range)# interface range g 0/6-7
@@ -344,8 +331,7 @@ ASW1(config-if-range)# ip arp inspection limit rate 25 burst interval 2
 
 ASW1(config)# errdisable recovery cause arp-inspection
 
-ASW1# show ip arp inspection
-ASW1# show ip arp inspection interfaces
+ASW1# show ip arp inspection [interfaces]
 
 -------------------------------------------------
 ! other show commands
@@ -353,9 +339,7 @@ ASW1# show ip arp inspection interfaces
 ASW1# show dhcp lease
 ASW1# show errdisable recovery
 ASW1# show history
-ASW1# show running-config
-ASW1# show running-config all
-ASW1# show running-config interface G1/0/1
+ASW1# show running-config [all|interface G1/0/1]
 ASW1# show running-config | begin line vty
 ASW1# show running-config | include interface
 ASW1# show running-config | section ospf
@@ -364,20 +348,16 @@ ASW1# show startup-config
 -------------------------------------------------
 ! other commands
 
-ASW1# debug all
+ASW1# [no] debug all
+ASW1# undebug all
 ASW1# debug spanning-tree events
 ASW1# disable
-ASW1# no debug all
 ASW1# reload
 ASW1# terminal history size x
-ASW1# undebug all
 
 ASW1(config)# history size x
 ASW1(config)# [no] ip domain-lookup
 ASW1(config)# ip name-server x1,x2
 ASW1(config)# service password-encryption
-ASW1(config)# [no] shutdown vlan 10
-
-
 
 
