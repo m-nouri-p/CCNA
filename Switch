@@ -142,9 +142,10 @@ ASW1(config-if)# switchport nonegotiate
 
 ASW1(config-if)# switchport mode dynamic {desirable|auto}
 
+ASW1# show interfaces switchport
+ASW1# show interfaces g 9/1 switchport
 ASW1# show interfaces trunk
 ASW1# show interfaces g 0/1 trunk
-ASW1# show interfaces g 9/1 switchport
 ASW1# show vlan
 ASW1# show vlans
 ASW1# show vlan brief
