@@ -356,7 +356,6 @@ ASW1# reload
 ASW1# terminal history size x
 
 ASW1(config)# history size x
-ASW1(config)# [no] ip domain-lookup
 ASW1(config)# service password-encryption
 
 
