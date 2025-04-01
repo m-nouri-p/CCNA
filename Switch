@@ -19,7 +19,7 @@ ASW1(config)# default interface g0/0
 ASW1# show interfaces [description|counters|status|vlan 30]
 ASW1# show interfaces g 0/0 [counters|status]
 
-ASW1# show ip interface [brief] 
+ASW1# show ip interface [brief] | exclude unassigned
 ASW1# show ip interface g0/0
 
 -------------------------------------------------
