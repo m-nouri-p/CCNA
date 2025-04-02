@@ -314,7 +314,7 @@ ASW1# show ip dhcp snooping [binding]
 ! DAI
 
 ASW1(config)# ip arp inspection vlan 1,5,10
-ASW1(config)# ip arp inspection validate {dst-mac|ip|src-mac}
+ASW1(config)# ip arp inspection validate dst-mac src-mac ip 
 ASW1(config)# arp access-list ARP-ACL-5   !==> It isn't IP ACL
 ASW1(config-arp-nacl)# permit ip host A.B.C.D mac host E.F.G 
 ASW1(config)# ip arp inspection filter ARP-ACL-5 vlan 5
