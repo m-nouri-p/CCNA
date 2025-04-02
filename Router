@@ -208,7 +208,7 @@ R1(config)# ntp update-calendar
 R1(config)# ntp master [10]
 R1(config)# ntp source Loopback0
 
-R1(config)# ntp authentication
+R1(config)# ntp authenticate
 R1(config)# ntp authentication-key 1 md5 mohammad
 R1(config)# ntp trusted-key 1
 R1(config)# ntp server 10.0.12.1 key 1
