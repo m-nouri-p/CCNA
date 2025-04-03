@@ -30,6 +30,8 @@ R1(config)# ip route 0.0.0.0 0.0.0.0 213.10.0.45
 R1(config)# ip route 192.168.10.0 255.255.255.0 192.168.20.2 [AD] [permanent] 
 R1(config)# ip route 192.168.10.0 255.255.255.0 g0/0 [192.168.20.2]
 
+R1# show ip route [static|connected|ospf|eigrp|A.B.C.D]
+
 ---------------------------------------------------------
 ! if lo
 
@@ -266,7 +268,7 @@ R1(config)# snmp-server host 192.168.1.10 version 2c password2
 R1(config)# snmp-server enable traps snmp linkdown linkup
 R1(config)# snmp-server enable traps config
 
-R1# show snmp [community|host|contact|stats|lacation|mib|...]
+R1# show snmp [community|host|contact|stats|location|mib]
 ---------------------------------------------------------
 ! syslog
 
@@ -335,6 +337,7 @@ Router(config-pmap-c)# priority percent 10
 
 Router(config-pmap-c)# int g0/0
 Router(config-if)#service-policy output G0/0_OUT
+
 ---------------------------------------------------------
 ! GRE
 
@@ -342,6 +345,7 @@ Router(config)# interface tunnel 0
 Router(config-if)# ip address A.B.C.D A.B.C.D
 Router(config-if)# tunnel source {g0/0/0|A.B.C.D}
 Router(config-if)# tunnel destination {g0/0/0|A.B.C.D}
+
 ---------------------------------------------------------
 ! VRF
 
@@ -360,8 +364,7 @@ Router# ping vrf CUSTOMER1 A.B.C.D
 
 R1# show interfaces [g0/0] [controller]
 R1# show [ip] arp
-R1# show ip interfaces [brief]
-R1# show ip route [static|connected|ospf|eigrp|A.B.C.D]
+R1# show ip interface [brief]
 R1# show protocols [g0/0]
 R1# show vlans
 
@@ -372,8 +375,6 @@ R1(config)# clear ip arp [g0/0]
 
 R1(config-if)# ip mtu 1400
 R1(config-if)# [no] negotiation auto
-
-
 
 
 
