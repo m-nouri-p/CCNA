@@ -7,7 +7,7 @@ Switch# configure terminal
 Switch(config)# hostname ASW1 
 
 -------------------------------------------------
-! Interfaces commands
+! Interface commands
 
 ASW1(config-if)# [no] description x
 ASW1(config-if)# [no] duplex ?
@@ -31,24 +31,18 @@ ASW1(config-if)# mac-address aaaa.bbbb.cccc
 ASW1(config)# interface port-channel 1
 ASW1(config-if)# mac-address aaaa.bbbb.cccc
 
-ASW1(config)# mac address-table static aaaa.bbbb.cccc vlan 10 interface G0/2
+ASW1(config)# mac address-table static aaaa.bbbb.cccc vlan 10 int G0/2
 
-ASW1# clear mac address-table dynamic [vlan 3|interface f0/1] 
-ASW1# clear mac address-table address 0DF7.45BA.201C
+ASW1# clear mac address-table dynamic [vlan 3|interface FastEthernet 0/1] 
+ASW1# clear mac address-table address aaaa.bbbb.cccc
 
-ASW1> show mac address-table aging-time
-ASW1> show mac address-table count
-ASW1> show mac address-table dynamic
-ASW1> show mac address-table dynamic address 0DF7.45BA.201C
-ASW1> show mac address-table dynamic interface FastEthernet 0/1
-ASW1> show mac address-table dynamic vlan 1
-ASW1> show mac address-table secure
+ASW1> show mac address-table [aging-time|count|secure]
+ASW1> show mac address-table dynamic [addr aaaa.bbbb.cccc|int f0/1|vlan 10]
 
 -------------------------------------------------
 ! password for config mode
 ! md5
-ASW1(config)# enable secret somepassword1 !--> md5
-ASW1(config)# enable algorithm-type md5 secret somepassword
+ASW1(config)# enable [algorithm-type md5] secret somepassword
 ASW1(config)# enable secret 5 somepassword1 !--> encrypted
 
 ! scrypt
@@ -65,14 +59,14 @@ ASW1(config-line)# login
 ASW1(config)# line vty 0 15
 ASW1(config-line)# password somepassword3
 ASW1(config-line)# login
-ASW1(config-line)# transport input ?
+ASW1(config-line)# transport input ssh
 ASW1(config-line)# transport output none
 
 -------------------------------------------------
 ! disable shared password and login via user/pass
 
 DSW1(config)# vlan 50
-DSW1(config-vlan)# name MGMT ! management
+DSW1(config-vlan)# name Management
 
 DSW1(config)# interface vlan 50
 DSW1(config-if)# ip address 192.168.1.2 255.255.255.0
@@ -97,7 +91,7 @@ ASW1(config-line)# no password
 ASW1(config)# line vty 0 15
 ASW1(config-line)# login local 
 ASW1(config-line)# no password 
-ASW1(config-line)# transport input ?
+ASW1(config-line)# transport input ssh
 ASW1(config-line)# transport output none
 ASW1(config-line)# exec-timeout 0 0
 ASW1(config-line)# access-class 1 in
@@ -114,13 +108,13 @@ ASW1(config)# vlan 2
 ASW1(config-vlan)# name IT-vlan
 ASW1(config-vlan)# exit
 
-ASW1(config)# interface range FastEthernet 0/1 , FastEthernet 1/1 , FastEthernet 2/1
+ASW1(config)# interface range FastEthernet 0/1 , F 1/1 , f2/1
 ASW1(config-if-range)# switchport mode access
 ASW1(config-if-range)# switchport access vlan 2 
 ASW1(config-if-range)# switchport voice vlan 3
 ASW1(config-if-range)# end
 
-ASW1(config)# interface range FastEthernet 0/1-3
+ASW1(config)# interface range g 0/1-3
 ASW1(config-if-range)# switchport access vlan 3
 ASW1(config-if-range)# ^Z
 
@@ -136,8 +130,7 @@ ASW1(config-if)# switchport mode dynamic {desirable|auto}
 ASW1(config-vlan)# [no] shutdown
 ASW1(config)# [no] shutdown vlan 10
 
-ASW1# show interfaces [g 9/1] switchport
-ASW1# show interfaces [g 0/1] trunk
+ASW1# show interfaces [g 0/1] {switchport|trunk}
 ASW1# show vlan [brief|id 2|name x]
 ASW1# show vlans
 
@@ -189,8 +182,7 @@ ASW1(config-if)# switchport port-security aging static
 ASW1(config)# errdisable recovery cause psecure-violation
 ASW1(config)# errdisable recovery interval 180
 
-ASW1# show port-security
-ASW1# show port-security int f0/1
+ASW1# show port-security [int f0/1]
 
 -------------------------------------------------
 ! layer 3 switch
@@ -223,9 +215,7 @@ ASW1(config)# spanning-tree loopgaurd default
 ASW1(config)# spanning-tree mode {pvst|rapid-pvst}
 ASW1(config)# spanning-tree portfast [edge] default
 ASW1(config)# spanning-tree portfast [edge] {bpdugaurd|bpdufilter} default
-ASW1(config)# spanning-tree vlan 10,20 forward-time 8
-ASW1(config)# spanning-tree vlan 10,20 hello-time 4
-ASW1(config)# spanning-tree vlan 10,20 max-age 10
+ASW1(config)# spanning-tree vlan 10,20 {forward-time 8|hello-time 4|max-age 10}
 ASW1(config)# spanning-tree vlan 10,20 root {primary|secondary}
 ASW1(config)# spanning-tree vlan 10,20 prority 28000
 
@@ -237,9 +227,8 @@ ASW1(config-if)# spanning-tree portfast disable
 ASW1(config-if)# spanning-tree portfast [edge] trunk
 ASW1(config-if)# spanning-tree [vlan 20,30] {cost 100|port-priority 64}
 
-ASW1# show spanning-tree root
-ASW1# show spanning-tree summary
-ASW1# show spanning-tree [vlan 20,30] [interface g0/0/0] [detail]
+ASW1# show spanning-tree [root|summary]
+ASW1# show spanning-tree [vlan 20,30] [int g0/0/0] [detail]
 
 -------------------------------------------------
 ! etherchannel
@@ -333,7 +322,7 @@ ASW1# show errdisable recovery
 ASW1# show history
 ASW1# show running-config [all|interface G1/0/1]
 ASW1# show running-config | begin line vty
-ASW1# show running-config | include interface
+ASW1# show running-config | include interface | exclude shutdown
 ASW1# show running-config | section ospf
 ASW1# show startup-config
 
