@@ -33,9 +33,7 @@ ASW1(config-if)# mac-address aaaa.bbbb.cccc
 
 ASW1(config)# mac address-table static aaaa.bbbb.cccc vlan 10 interface G0/2
 
-ASW1# clear mac address-table dynamic
-ASW1# clear mac address-table dynamic vlan 3
-ASW1# clear mac address-table dynamic interface f0/1 
+ASW1# clear mac address-table dynamic [vlan 3|interface f0/1] 
 ASW1# clear mac address-table address 0DF7.45BA.201C
 
 ASW1> show mac address-table aging-time
